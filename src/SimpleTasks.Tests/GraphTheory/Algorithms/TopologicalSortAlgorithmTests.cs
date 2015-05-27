@@ -280,8 +280,6 @@ namespace SimpleTasks.Tests.GraphTheory.Algorithms
             AssertOrder("692741", "962741");
         }
 
-        
-
         private void AssertOrder(params string[] sortedVerticesList)
         {
             string.Join("", Cut.SortedVertices).Should().BeOneOf(sortedVerticesList);
