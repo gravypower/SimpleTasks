@@ -23,12 +23,9 @@ namespace SimpleTasks.Tests.GraphTheory.Algorithms
         [Test]
         public void GivenOneVertex_WhenComputeCalled_SortedVerticesContainsThatVertex()
         {
-            //Assign
+            //Assign Act
             Graph.InsertVertex("A");
             Cut = new TopologicalSortAlgorithm<string>(Graph);
-
-            //Act
-            Cut.Compute();
 
             //Assert
             Cut.SortedVertices.Should().Contain("A");
@@ -37,13 +34,10 @@ namespace SimpleTasks.Tests.GraphTheory.Algorithms
         [Test]
         public void GivenTwoVertices_WhenComputeCalled_SortedVerticesContainsThoesVertices()
         {
-            //Assign
+            //Assign Act
             Graph.InsertVertex("A");
             Graph.InsertVertex("B");
             Cut = new TopologicalSortAlgorithm<string>(Graph);
-
-            //Act
-            Cut.Compute();
 
             //Assert
             Cut.SortedVertices.Should().Contain("A");
@@ -58,13 +52,10 @@ namespace SimpleTasks.Tests.GraphTheory.Algorithms
             string secoundVertex, 
             string sortedVertices)
         {
-            //Assign
+            //Assign Act
             Graph.InsertVertex(firstVertex);
             Graph.InsertVertex(secoundVertex);
             Cut = new TopologicalSortAlgorithm<string>(Graph);
-
-            //Act
-            Cut.Compute();
 
             //Assert
             AssertOrder(sortedVertices);
@@ -73,14 +64,11 @@ namespace SimpleTasks.Tests.GraphTheory.Algorithms
         [Test]
         public void GivenTwoVertices_ThatHaveAnEdge__WhenComputeCalled_SortedVerticesShouldBeSourted()
         {
-            //Assign
+            //Assign Act
             Graph.InsertVertex("A");
             Graph.InsertVertex("B");
             Graph.InsertEdge("A", "B");
             Cut = new TopologicalSortAlgorithm<string>(Graph);
-
-            //Act
-            Cut.Compute();
 
             //Assert
             AssertOrder("AB");
@@ -89,14 +77,11 @@ namespace SimpleTasks.Tests.GraphTheory.Algorithms
         [Test]
         public void GivenTwoVerticesAddedInReverse_ThatHaveAnEdge__WhenComputeCalled_SortedVerticesShouldBeSourted()
         {
-            //Assign
+            //Assign Act
             Graph.InsertVertex("B");
             Graph.InsertVertex("A");
             Graph.InsertEdge("A", "B");
             Cut = new TopologicalSortAlgorithm<string>(Graph);
-
-            //Act
-            Cut.Compute();
 
             //Assert
             AssertOrder("AB");
@@ -109,10 +94,9 @@ namespace SimpleTasks.Tests.GraphTheory.Algorithms
             Graph.InsertVertex("B");
             Graph.InsertVertex("A");
             Graph.InsertEdge("A", "B");
-            Cut = new TopologicalSortAlgorithm<string>(Graph);
 
             //Act
-            var result = Cut.HasPredecessors("A", Graph.VerticesAndEdges);
+            var result = TopologicalSortAlgorithm<string>.HasPredecessors("A", Graph.VerticesAndEdges);
 
             //Assert
             result.Should().BeFalse();
@@ -128,10 +112,9 @@ namespace SimpleTasks.Tests.GraphTheory.Algorithms
             Graph.InsertVertex("C");
             Graph.InsertEdge("A", "B");
             Graph.InsertEdge("B", "C");
-            Cut = new TopologicalSortAlgorithm<string>(Graph);
 
             //Act
-            var result = Cut.HasPredecessors("A", Graph.VerticesAndEdges);
+            var result = TopologicalSortAlgorithm<string>.HasPredecessors("A", Graph.VerticesAndEdges);
 
             //Assert
             result.Should().BeFalse();
@@ -146,10 +129,9 @@ namespace SimpleTasks.Tests.GraphTheory.Algorithms
             Graph.InsertVertex("C");
             Graph.InsertEdge("A", "B");
             Graph.InsertEdge("B", "C");
-            Cut = new TopologicalSortAlgorithm<string>(Graph);
 
             //Act
-            var result = Cut.HasPredecessors("B", Graph.VerticesAndEdges);
+            var result = TopologicalSortAlgorithm<string>.HasPredecessors("B", Graph.VerticesAndEdges);
 
             //Assert
             result.Should().BeTrue();
@@ -158,16 +140,13 @@ namespace SimpleTasks.Tests.GraphTheory.Algorithms
         [Test]
         public void GivenThreeVerticesBAC_ThatHaveAnEdgeABBC__WhenComputeCalled_SortedVerticesShouldBeSourted()
         {
-            //Assign
+            //Assign Act
             Graph.InsertVertex("B");
             Graph.InsertVertex("A");
             Graph.InsertVertex("C");
             Graph.InsertEdge("A", "B");
             Graph.InsertEdge("B", "C");
             Cut = new TopologicalSortAlgorithm<string>(Graph);
-
-            //Act
-            Cut.Compute();
 
             //Assert
             AssertOrder("ABC");
@@ -176,16 +155,13 @@ namespace SimpleTasks.Tests.GraphTheory.Algorithms
         [Test]
         public void GivenThreeVerticesCAB_ThatHaveAnEdgeABBC__WhenComputeCalled_SortedVerticesShouldBeSourted()
         {
-            //Assign
+            //Assign Act
             Graph.InsertVertex("C");
             Graph.InsertVertex("A");
             Graph.InsertVertex("B");
             Graph.InsertEdge("A", "B");
             Graph.InsertEdge("B", "C");
             Cut = new TopologicalSortAlgorithm<string>(Graph);
-
-            //Act
-            Cut.Compute();
 
             //Assert
             AssertOrder("ABC");
@@ -194,7 +170,7 @@ namespace SimpleTasks.Tests.GraphTheory.Algorithms
         [Test]
         public void GivenFourVerticesCABD_ThatHaveAnEdgeABBCCD__WhenComputeCalled_SortedVerticesShouldBeSourted()
         {
-            //Assign
+            //Assign Act
             Graph.InsertVertex("C");
             Graph.InsertVertex("A");
             Graph.InsertVertex("B");
@@ -204,9 +180,6 @@ namespace SimpleTasks.Tests.GraphTheory.Algorithms
             Graph.InsertEdge("C", "D");
             Cut = new TopologicalSortAlgorithm<string>(Graph);
 
-            //Act
-            Cut.Compute();
-
             //Assert
             AssertOrder("ABCD");
         }
@@ -214,7 +187,7 @@ namespace SimpleTasks.Tests.GraphTheory.Algorithms
         [Test]
         public void GivenFourVerticesCABD_ThatHaveAnEdgeABACCD__WhenComputeCalled_SortedVerticesShouldBeSourted()
         {
-            //Assign
+            //Assign Act
             Graph.InsertVertex("C");
             Graph.InsertVertex("A");
             Graph.InsertVertex("B");
@@ -224,9 +197,6 @@ namespace SimpleTasks.Tests.GraphTheory.Algorithms
             Graph.InsertEdge("C", "D");
             Cut = new TopologicalSortAlgorithm<string>(Graph);
 
-            //Act
-            Cut.Compute();
-
             //Assert
             AssertOrder("ABCD");
         }
@@ -234,7 +204,7 @@ namespace SimpleTasks.Tests.GraphTheory.Algorithms
         [Test]
         public void GivenFourVerticesCABD_ThatHaveAnEdgeACABAD__WhenComputeCalled_SortedVerticesShouldBeSourted()
         {
-            //Assign
+            //Assign Act
             Graph.InsertVertex("C");
             Graph.InsertVertex("A");
             Graph.InsertVertex("B");
@@ -244,9 +214,6 @@ namespace SimpleTasks.Tests.GraphTheory.Algorithms
             Graph.InsertEdge("A", "D");
             Cut = new TopologicalSortAlgorithm<string>(Graph);
 
-            //Act
-            Cut.Compute();
-
             //Assert
             AssertOrder("ABDC");
         }
@@ -254,7 +221,7 @@ namespace SimpleTasks.Tests.GraphTheory.Algorithms
         [Test]
         public void Intergreation()
         {
-            //Assign
+            //Assign Act
             Graph.InsertVertex("1");
             Graph.InsertVertex("2");
             Graph.InsertVertex("4");
@@ -267,11 +234,9 @@ namespace SimpleTasks.Tests.GraphTheory.Algorithms
             Graph.InsertEdge("7", "4");
             Graph.InsertEdge("4", "1");
             Graph.InsertEdge("6", "1");
-            Cut = new TopologicalSortAlgorithm<string>(Graph);
 
-            //Act
-            Stopwatch s = Stopwatch.StartNew();
-            Cut.Compute();
+            var s = Stopwatch.StartNew();
+            Cut = new TopologicalSortAlgorithm<string>(Graph);
             s.Stop();
             
             Console.WriteLine("Elapsed Time: {0} ms", s.ElapsedMilliseconds);

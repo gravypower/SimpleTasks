@@ -58,25 +58,35 @@ namespace SimpleTasks
 
         public ITask DependsOn(params string[] otherTasks)
         {
-            if(otherTasks == null)
-                throw new ArgumentNullOrEmptyException("otherTasks");
+            GuardOtherTasks(otherTasks);
 
             for (var i = 0; i < otherTasks.Length; i++)
             {
                 var otherTask = otherTasks[i];
 
-                if (string.IsNullOrEmpty(otherTask))
-                    throw new ArgumentNullOrEmptyException("otherTasks at index " + i);
+                GuardOtherTask(otherTask, i);
 
                 if (!_taskContainer.DoesContainTask(otherTask))
                     _taskContainer.RegisterEmptyDependicy(otherTask);
 
-                if (_taskContainer.DoesDependicyExist(otherTask, Name))
-                    throw new DependicyExistException();
-
                 _taskContainer.RegisterDependicy(otherTask, Name);
             }
             return this;
+        }
+
+        private static void GuardOtherTasks(string[] otherTasks)
+        {
+            if (otherTasks == null)
+                throw new ArgumentNullOrEmptyException("otherTasks");
+        }
+
+        private void GuardOtherTask(string otherTask, int i)
+        {
+            if (string.IsNullOrEmpty(otherTask))
+                throw new ArgumentNullOrEmptyException("otherTasks at index " + i);
+
+            if (_taskContainer.DoesDependicyExist(otherTask, Name))
+                throw new DependicyExistException();
         }
     }
 }

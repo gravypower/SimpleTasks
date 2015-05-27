@@ -16,17 +16,7 @@ namespace SimpleTasks.GraphTheory.Graphs
 
         public IEnumerable<IEdge<TVertex>> Edges
         {
-            get
-            {
-                foreach (var value in VerticesAndEdges.Values)
-                {
-                    foreach (var edge in value)
-                    {
-                        yield return edge;
-                    }
-                }  
-                    
-            }
+            get { return VerticesAndEdges.Values.SelectMany(value => value); }
         }
 
         public DirectedAcyclicGraph()

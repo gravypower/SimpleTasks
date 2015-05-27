@@ -8,15 +8,21 @@ namespace SimpleTasks.GraphTheory.Algorithms
     {
         private readonly IDirectedAcyclicGraph<TVertex> _graph;
 
-        public IList<TVertex> SortedVertices { get; set; }
+        private readonly List<TVertex> _sortedVertices;
+
+        public IList<TVertex> SortedVertices
+        {
+            get { return _sortedVertices.AsReadOnly(); }
+        }
 
         public TopologicalSortAlgorithm(IDirectedAcyclicGraph<TVertex> graph)
         {
             _graph = graph;
-            SortedVertices = new List<TVertex>();
+            _sortedVertices = new List<TVertex>();
+            Compute();
         }
 
-        public void Compute()
+        private void Compute()
         {
             var workingList = new List<TVertex>(_graph.VerticesAndEdges.Keys);
             var workingGraph = _graph.VerticesAndEdges.ToDictionary(entry => entry.Key, entry => entry.Value);
@@ -38,22 +44,22 @@ namespace SimpleTasks.GraphTheory.Algorithms
             }
         }
 
-        public bool HasPredecessors(TVertex vertex, IDictionary<TVertex, IList<IEdge<TVertex>>> werticesAndEdges)
+        internal static bool HasPredecessors(TVertex vertex, IDictionary<TVertex, IList<IEdge<TVertex>>> verticesAndEdges)
         {
-            return werticesAndEdges.Values.Any(el => el.Any(e => e.Target.Equals(vertex)));
+            return verticesAndEdges.Values.Any(el => el.Any(e => e.Target.Equals(vertex)));
         }
 
         private void AddSortedVertex(TVertex vertex, ICollection<TVertex> workingList,
-            IDictionary<TVertex, IList<IEdge<TVertex>>> werticesAndEdges)
+            IDictionary<TVertex, IList<IEdge<TVertex>>> verticesAndEdges)
         {
-            SortedVertices.Add(vertex);
+            _sortedVertices.Add(vertex);
             workingList.Remove(vertex);
-            werticesAndEdges[vertex].Clear();
+            verticesAndEdges[vertex].Clear();
         }
 
-        private static bool HasEdge(IDictionary<TVertex, IList<IEdge<TVertex>>> werticesAndEdges)
+        private static bool HasEdge(IDictionary<TVertex, IList<IEdge<TVertex>>> verticesAndEdges)
         {
-            return werticesAndEdges.Values.Any(el => el.Any());
+            return verticesAndEdges.Values.Any(el => el.Any());
         }
     }
 }
