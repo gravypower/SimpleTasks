@@ -31,7 +31,7 @@ namespace SimpleTasks.GraphTheory.Algorithms
             {
                 foreach (var vertex in workingList.ToArray())
                 {
-                    if (!HasPredecessors(vertex, workingGraph) || !HasEdge(workingGraph))
+                    if (!workingGraph.HasPredecessors(vertex) || !HasEdge(workingGraph))
                     {
                         AddSortedVertex(vertex, workingList, workingGraph);
                     }
@@ -44,10 +44,6 @@ namespace SimpleTasks.GraphTheory.Algorithms
             }
         }
 
-        internal static bool HasPredecessors(TVertex vertex, IDictionary<TVertex, IList<IEdge<TVertex>>> verticesAndEdges)
-        {
-            return verticesAndEdges.Values.Any(el => el.Any(e => e.Target.Equals(vertex)));
-        }
 
         private void AddSortedVertex(TVertex vertex, ICollection<TVertex> workingList,
             IDictionary<TVertex, IList<IEdge<TVertex>>> verticesAndEdges)

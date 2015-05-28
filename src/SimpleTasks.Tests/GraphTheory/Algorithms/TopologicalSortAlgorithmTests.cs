@@ -96,7 +96,7 @@ namespace SimpleTasks.Tests.GraphTheory.Algorithms
             Graph.InsertEdge("A", "B");
 
             //Act
-            var result = TopologicalSortAlgorithm<string>.HasPredecessors("A", Graph.VerticesAndEdges);
+            var result = Graph.VerticesAndEdges.HasPredecessors("A");
 
             //Assert
             result.Should().BeFalse();
@@ -114,7 +114,7 @@ namespace SimpleTasks.Tests.GraphTheory.Algorithms
             Graph.InsertEdge("B", "C");
 
             //Act
-            var result = TopologicalSortAlgorithm<string>.HasPredecessors("A", Graph.VerticesAndEdges);
+            var result = Graph.VerticesAndEdges.HasPredecessors("A");
 
             //Assert
             result.Should().BeFalse();
@@ -131,7 +131,7 @@ namespace SimpleTasks.Tests.GraphTheory.Algorithms
             Graph.InsertEdge("B", "C");
 
             //Act
-            var result = TopologicalSortAlgorithm<string>.HasPredecessors("B", Graph.VerticesAndEdges);
+            var result = Graph.VerticesAndEdges.HasPredecessors("B");
 
             //Assert
             result.Should().BeTrue();

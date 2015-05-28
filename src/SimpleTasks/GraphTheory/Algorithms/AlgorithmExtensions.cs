@@ -7,8 +7,7 @@ namespace SimpleTasks.GraphTheory.Algorithms
     {
         public static IList<TVertex> TopologicalSort<TVertex>(this DirectedAcyclicGraph<TVertex> graph)
         {
-            var topologicalSortAlgorithm = new TopologicalSortAlgorithm<TVertex>(graph);
-            return topologicalSortAlgorithm.SortedVertices;
+            return new TopologicalSortAlgorithm<TVertex>(graph).SortedVertices;
         }
     }
 }

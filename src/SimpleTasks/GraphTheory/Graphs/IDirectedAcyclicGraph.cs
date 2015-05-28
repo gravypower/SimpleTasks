@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace SimpleTasks.GraphTheory.Graphs
 {
-    public interface IDirectedAcyclicGraph<TVertex>
+    public interface IDirectedAcyclicGraph<TVertex> : IGraph<TVertex>
     {
         IDictionary<TVertex, IList<IEdge<TVertex>>> VerticesAndEdges { get; }
         void InsertVertex(TVertex vertex);
