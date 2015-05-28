@@ -8,6 +8,27 @@ namespace SimpleTasks.GraphTheory.Graphs
     {
         public IDictionary<TVertex, IList<IEdge<TVertex>>> VerticesAndEdges { get; protected set; }
 
+        protected abstract void GuardEdge(TVertex source, TVertex target);
+
+        protected Graph()
+        {
+            VerticesAndEdges = new Dictionary<TVertex, IList<IEdge<TVertex>>>();
+        }
+
+        public void InsertVertex(TVertex vertex)
+        {
+            GuardVertex(vertex);
+
+            if (!VerticesAndEdges.ContainsKey(vertex))
+                VerticesAndEdges.Add(vertex, new List<IEdge<TVertex>>());
+        }
+
+        public virtual void InsertEdge(TVertex source, TVertex target)
+        {
+            GuardEdge(source, target);
+            VerticesAndEdges[source].Add(new Edge<TVertex> { Source = source, Target = target });
+        }
+
         public IEnumerable<TVertex> Vertices
         {
             get { return VerticesAndEdges.Keys.ToList().AsReadOnly(); }
@@ -16,11 +37,6 @@ namespace SimpleTasks.GraphTheory.Graphs
         public IEnumerable<IEdge<TVertex>> Edges
         {
             get { return VerticesAndEdges.Values.SelectMany(value => value).ToList().AsReadOnly(); }
-        }
-
-        public bool HasPredecessors(TVertex vertex)
-        {
-            return VerticesAndEdges.Values.Any(el => el.Any(e => e.Target.Equals(vertex)));
         }
 
         protected static void GuardVertex(TVertex vertex)

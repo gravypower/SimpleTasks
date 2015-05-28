@@ -11,7 +11,7 @@ namespace SimpleTasks.Tests.GraphTheory.Algorithms
     public class TopologicalSortAlgorithmTests
     {
         public TopologicalSortAlgorithm<string> Cut;
-        public IDirectedAcyclicGraph<string> Graph;
+        public IGraph<string> Graph;
 
         [SetUp]
         public void SetUp()

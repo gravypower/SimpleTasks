@@ -54,7 +54,6 @@
     <Compile Include="GraphTheory\Graphs\Exceptions\VertexDoesNotExistException.cs" />
     <Compile Include="GraphTheory\Graphs\Graph.cs" />
     <Compile Include="GraphTheory\Graphs\GraphExtensions.cs" />
-    <Compile Include="GraphTheory\Graphs\IDirectedAcyclicGraph.cs" />
     <Compile Include="GraphTheory\Graphs\IEdge.cs" />
     <Compile Include="GraphTheory\Algorithms\AlgorithmExtensions.cs" />
     <Compile Include="GraphTheory\Graphs\IGraph.cs" />

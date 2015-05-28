@@ -6,7 +6,7 @@ namespace SimpleTasks.GraphTheory.Algorithms
 {
     public class TopologicalSortAlgorithm<TVertex>
     {
-        private readonly IDirectedAcyclicGraph<TVertex> _graph;
+        private readonly IGraph<TVertex> _graph;
 
         private readonly List<TVertex> _sortedVertices;
 
@@ -15,7 +15,7 @@ namespace SimpleTasks.GraphTheory.Algorithms
             get { return _sortedVertices.AsReadOnly(); }
         }
 
-        public TopologicalSortAlgorithm(IDirectedAcyclicGraph<TVertex> graph)
+        public TopologicalSortAlgorithm(IGraph<TVertex> graph)
         {
             _graph = graph;
             _sortedVertices = new List<TVertex>();
