@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Annotations.cs" />
     <Compile Include="Exceptions\ArgumentNullOrEmptyException.cs" />
     <Compile Include="Exceptions\DependicyDoesNotExistException.cs" />
     <Compile Include="Exceptions\DependicyExistException.cs" />

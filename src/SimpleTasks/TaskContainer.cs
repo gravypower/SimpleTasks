@@ -12,11 +12,16 @@ namespace SimpleTasks
         private readonly bool _enforceDependencyOnAddOrder;
         private readonly DirectedAcyclicGraph<string> _graph;
 
-        protected Stack<ITask> Tasks { get; private set; }
+        private readonly Stack<ITask> _tasks;
+
+        protected IList<ITask> Tasks
+        {
+            get { return _tasks.ToList().AsReadOnly(); }
+        }
 
         public TaskContainer()
         {
-            Tasks = new Stack<ITask>();
+            _tasks = new Stack<ITask>();
             _graph = new DirectedAcyclicGraph<string>();
         }
 
@@ -39,7 +44,7 @@ namespace SimpleTasks
         {
             foreach (var sortedVertex in _graph.TopologicalSort())
             {
-                var task = Tasks.SingleOrDefault(t => t.Name == sortedVertex);
+                var task = _tasks.SingleOrDefault(t => t.Name == sortedVertex);
 
                 if (task == null)
                     throw new DependicyDoesNotExistException();
@@ -50,14 +55,14 @@ namespace SimpleTasks
 
         public ITask Register(Action action)
         {
-            return Register(ObjectIDGeneratorFacade.GetId(action.Target), action);
+            return Register(ObjectIdGeneratorFacade.GetId(action.Target), action);
         }
 
         public ITask Register(string taskName, Action action)
         {
             GuardArguments(taskName, action);
-            
-            if(Tasks.Any(t => t.Name == taskName))
+
+            if (_tasks.Any(t => t.Name == taskName))
                 throw new TaskExistsException();
 
             return BuildTask(taskName, action);
@@ -80,9 +85,9 @@ namespace SimpleTasks
 
             ITask lastTask = null;
             if (_enforceDependencyOnAddOrder && Tasks.Any())
-                lastTask = Tasks.Peek();
+                lastTask = _tasks.Peek();
 
-            Tasks.Push(task);
+            _tasks.Push(task);
 
             if (lastTask != null && _enforceDependencyOnAddOrder)
                 task.DependsOn(lastTask.Name);
@@ -90,7 +95,8 @@ namespace SimpleTasks
             return task;
         }
 
-        private static void GuardArguments(string taskName, Action action)
+        [AssertionMethod]
+        private static void GuardArguments([NotNull] string taskName, [NotNull] Action action)
         {
             if (String.IsNullOrEmpty(taskName))
                 throw new ArgumentNullOrEmptyException("taskName");
@@ -100,3 +106,5 @@ namespace SimpleTasks
         }
     }
 }
+
+

@@ -2,11 +2,11 @@
 
 namespace SimpleTasks
 {
-    public static class ObjectIDGeneratorFacade
+    public static class ObjectIdGeneratorFacade
     {
         private static ObjectIDGenerator ObjectIdGen { get; set; }
 
-        static ObjectIDGeneratorFacade()
+        static ObjectIdGeneratorFacade()
         {
             ObjectIdGen = new ObjectIDGenerator();
         }

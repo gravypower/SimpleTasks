@@ -21,15 +21,6 @@ namespace SimpleTasks
             SetAction(action);
         }
 
-        protected void SetAction(Action action)
-        {
-            Action = delegate
-            {
-                action.Invoke();
-                Invoked = true;
-            };
-        }
-
         public ITask DependsOn(string name, Action action)
         {
             _taskContainer.Register(name, action);
@@ -39,13 +30,13 @@ namespace SimpleTasks
 
         public ITask DependsOn(object task, Action action)
         {
-            var name = ObjectIDGeneratorFacade.GetId(task);
+            var name = ObjectIdGeneratorFacade.GetId(task);
             return DependsOn(name, action);
         }
 
         public ITask DependsOn(params object[] otherTasks)
         {
-            foreach (var taskId in otherTasks.Select(ObjectIDGeneratorFacade.GetId))
+            foreach (var taskId in otherTasks.Select(ObjectIdGeneratorFacade.GetId))
             {
                 if (!_taskContainer.DoesContainTask(taskId))
                     _taskContainer.RegisterEmptyDependicy(taskId);
@@ -74,12 +65,23 @@ namespace SimpleTasks
             return this;
         }
 
-        private static void GuardOtherTasks(string[] otherTasks)
+        private void SetAction(Action action)
+        {
+            Action = delegate
+            {
+                action.Invoke();
+                Invoked = true;
+            };
+        }
+
+        [AssertionMethod]
+        private static void GuardOtherTasks([NotNull] string[] otherTasks)
         {
             if (otherTasks == null)
                 throw new ArgumentNullOrEmptyException("otherTasks");
         }
 
+        [AssertionMethod]
         private void GuardOtherTask(string otherTask, int i)
         {
             if (string.IsNullOrEmpty(otherTask))
