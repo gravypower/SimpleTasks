@@ -6,7 +6,7 @@ namespace SimpleTasks
     {
         void Run();
 
-        ITask Register(string taskName, Action action);
+        ITask Register(string taskName, Action action, Func<bool> condition = null );
 
         void RegisterEmptyDependicy(string taskName);
 

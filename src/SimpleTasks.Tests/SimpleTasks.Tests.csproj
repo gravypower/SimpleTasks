@@ -54,6 +54,7 @@
     <Compile Include="GraphTheory\Graphs\DirectedAcyclicGraphTests.cs" />
     <Compile Include="GraphTheory\Graphs\DummeyType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TaskContainer\ConditionalTaskTastsTests.cs" />
     <Compile Include="TaskContainer\TaskContainerAPITests.cs" />
     <Compile Include="TaskContainer\TaskContainerSpy.cs" />
     <Compile Include="TaskContainer\TaskContainerTests.cs" />

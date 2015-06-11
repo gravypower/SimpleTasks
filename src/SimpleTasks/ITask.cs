@@ -4,11 +4,13 @@ namespace SimpleTasks
 {
     public interface ITask
     {
-        string Name { get; set; }
+        Func<bool> Condition { get;} 
+
+        string Name { get; }
 
         Action Action { get; }
 
-        bool Invoked { get; set; }
+        bool Invoked { get; }
 
         ITask DependsOn(params string[] otherTasks);
 

@@ -50,6 +50,9 @@ namespace SimpleTasks
                 if (task == null)
                     throw new DependicyDoesNotExistException();
 
+                if(task.Condition != null && !task.Condition())
+                    return;
+
                 task.Action.Invoke();
             }
         }
@@ -59,14 +62,14 @@ namespace SimpleTasks
             return Register(ObjectIdGeneratorFacade.GetId(action.Target), action);
         }
 
-        public ITask Register(string taskName, Action action)
+        public ITask Register(string taskName, Action action, Func<bool> condition = null )
         {
             GuardArguments(taskName, action);
 
             if (_tasks.Any(t => t.Name == taskName))
                 throw new TaskExistsException();
 
-            return BuildTask(taskName, action);
+            return BuildTask(taskName, action, condition);
         }
 
         public void RegisterEmptyDependicy(string taskName)
@@ -79,10 +82,10 @@ namespace SimpleTasks
             return _graph.Vertices.Contains(taskName);
         }
 
-        private Task BuildTask(string name, Action action)
+        private Task BuildTask(string name, Action action, Func<bool> condition)
         {
             _graph.InsertVertex(name);
-            var task = new Task(this, action, name);
+            var task = new Task(this, action, name, condition);
 
             ITask lastTask = null;
             if (_enforceDependencyOnAddOrder && Tasks.Any())

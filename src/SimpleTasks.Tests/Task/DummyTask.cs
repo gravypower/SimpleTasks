@@ -40,5 +40,17 @@ namespace SimpleTasks.Tests.Task
         {
             throw new NotImplementedException();
         }
+
+        public Func<bool> Condition
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
     }
 }

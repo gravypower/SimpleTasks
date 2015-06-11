@@ -9,17 +9,20 @@ namespace SimpleTasks
     {
         private readonly ITaskContainer _taskContainer;
 
-        public string Name { get; set; }
+        public string Name { get; private set; }
 
         public Action Action { get; private set; }
 
-        public bool Invoked { get; set; }
+        public bool Invoked { get; private set; }
 
-        public Task(ITaskContainer taskContainer, Action action, string name)
+        public Func<bool> Condition { get; private set; }
+
+        public Task(ITaskContainer taskContainer, Action action, string name, Func<bool> condition)
         {
             _taskContainer = taskContainer;
             Name = name;
             SetAction(action);
+            Condition = condition;
         }
 
         public ITask DependsOn(string name, Action action)
