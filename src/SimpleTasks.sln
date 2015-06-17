@@ -14,6 +14,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{85D32D
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleTasks.Playground", "SimpleTasks.Playground\SimpleTasks.Playground.csproj", "{821AD8E8-8038-49D4-93AF-E354AD27AEF5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -28,6 +30,10 @@ Global
 		{13869B6D-C0B0-4428-8083-D9465B991A6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{13869B6D-C0B0-4428-8083-D9465B991A6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{13869B6D-C0B0-4428-8083-D9465B991A6D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{821AD8E8-8038-49D4-93AF-E354AD27AEF5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{821AD8E8-8038-49D4-93AF-E354AD27AEF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{821AD8E8-8038-49D4-93AF-E354AD27AEF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{821AD8E8-8038-49D4-93AF-E354AD27AEF5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

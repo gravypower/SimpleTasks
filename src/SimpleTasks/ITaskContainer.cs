@@ -2,11 +2,11 @@
 
 namespace SimpleTasks
 {
-    public interface ITaskContainer
+    public interface ITaskContainer<out TTask>
     {
         void Run();
 
-        ITask Register(string taskName, Action action, Func<bool> condition = null );
+        TTask Register(string taskName, Action action, Func<bool> condition = null);
 
         void RegisterEmptyDependicy(string taskName);
 

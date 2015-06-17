@@ -8,7 +8,7 @@ namespace SimpleTasks.Tests.Task
     [TestFixture]
     public class TaskTests
     {
-        public ITask Sut;
+        public AbstractTask<SimpleTasks.Task> Sut;
 
         [SetUp]
         public void SetUp()
