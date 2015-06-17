@@ -7,7 +7,7 @@ namespace SimpleTasks.Playground.SupportOfTaskTailures.TaskRunnerNotHandlingExce
     {
         public event TaskExceptionEventHandler OnException;
 
-        public Task(ITaskContainer<Task> taskContainer, Action action,
+        public Task(AbstractTaskContainer<Task> taskContainer, Action action,
             string name, Func<bool> condition) : base(taskContainer, name, action, condition)
         {
         }

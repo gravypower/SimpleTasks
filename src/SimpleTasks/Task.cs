@@ -4,7 +4,7 @@ namespace SimpleTasks
 {
     public class Task : AbstractTask<Task>
     {
-        public Task(ITaskContainer<Task> taskContainer, string name, Action action, Func<bool> condition)
+        public Task(AbstractTaskContainer<Task> taskContainer, string name, Action action, Func<bool> condition)
             : base(taskContainer, name, action, condition)
         {
         }

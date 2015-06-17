@@ -7,7 +7,7 @@ namespace SimpleTasks
 {
     public class AbstractTask<TTask> where TTask : AbstractTask<TTask>
     {
-        private readonly ITaskContainer<TTask> _taskContainer;
+        private readonly AbstractTaskContainer<TTask> _taskContainer;
 
         public string Name { get; private set; }
 
@@ -17,7 +17,7 @@ namespace SimpleTasks
 
         public Func<bool> Condition { get; private set; }
 
-        public AbstractTask(ITaskContainer<TTask> taskContainer, string name, Action action, Func<bool> condition)
+        public AbstractTask(AbstractTaskContainer<TTask> taskContainer, string name, Action action, Func<bool> condition)
         {
             _taskContainer = taskContainer;
             Name = name;

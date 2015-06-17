@@ -8,7 +8,7 @@ using SimpleTasks.GraphTheory.Algorithms;
 
 namespace SimpleTasks
 {
-    public abstract class AbstractTaskContainer<TTask> : ITaskContainer<TTask> where TTask : AbstractTask<TTask>
+    public abstract class AbstractTaskContainer<TTask>  where TTask : AbstractTask<TTask>
     {
         private readonly bool _enforceDependencyOnAddOrder;
         private readonly DirectedAcyclicGraph<string> _graph;
