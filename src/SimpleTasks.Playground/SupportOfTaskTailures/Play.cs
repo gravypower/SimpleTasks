@@ -20,7 +20,7 @@ namespace SimpleTasks.Playground.SupportOfTaskTailures
 
             var task = container.Register(ThrowNewException);
 
-            ITask onExceptionTask = null;
+            TaskRunnerNotHandlingExceptionsNatively.Task onExceptionTask = null;
 
             task.OnException += (sender, args) => onExceptionTask = args.Task;
 
@@ -41,7 +41,7 @@ namespace SimpleTasks.Playground.SupportOfTaskTailures
             _onExceptionTask.Should().Be(task);
         }
 
-        ITask _onExceptionTask = null;
+        TaskRunnerNotHandlingExceptionsNatively.Task _onExceptionTask = null;
 
         private void container_OnException(object sender, TaskExceptionEventArgs eventArgs)
         {
@@ -55,7 +55,7 @@ namespace SimpleTasks.Playground.SupportOfTaskTailures
 
             var task = container.Register(ThrowNewException);
 
-            ITask onExceptionTask = null;
+            TaskRunnerNotHandlingExceptionsNatively.Task onExceptionTask = null;
 
             container.OnException += (sender, args) => onExceptionTask = args.Task;
 

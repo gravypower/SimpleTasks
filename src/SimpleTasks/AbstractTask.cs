@@ -5,7 +5,7 @@ using SimpleTasks.Exceptions;
 
 namespace SimpleTasks
 {
-    public class AbstractTask<TTask> : ITask where TTask : AbstractTask<TTask>
+    public class AbstractTask<TTask> where TTask : AbstractTask<TTask>
     {
         private readonly ITaskContainer<TTask> _taskContainer;
 

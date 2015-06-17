@@ -28,7 +28,7 @@ namespace SimpleTasks.Playground.SupportOfTaskTailures.TaskRunnerNotHandlingExce
 
     public class TaskExceptionEventArgs
     {
-        public Task Task{ get; set; }
+        public Task Task { get; set; }
         public Exception Exception { get; set; }
 
         public TaskExceptionEventArgs(Exception exception, Task task)
