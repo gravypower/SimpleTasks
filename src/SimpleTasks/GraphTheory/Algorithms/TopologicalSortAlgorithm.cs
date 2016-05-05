@@ -10,10 +10,7 @@ namespace SimpleTasks.GraphTheory.Algorithms
 
         private readonly List<TVertex> _sortedVertices;
 
-        public IList<TVertex> SortedVertices
-        {
-            get { return _sortedVertices.AsReadOnly(); }
-        }
+        public IList<TVertex> SortedVertices => _sortedVertices.AsReadOnly();
 
         public TopologicalSortAlgorithm(IGraph<TVertex> graph)
         {
@@ -43,7 +40,6 @@ namespace SimpleTasks.GraphTheory.Algorithms
                 }
             }
         }
-
 
         private void AddSortedVertex(TVertex vertex, ICollection<TVertex> workingList,
             IDictionary<TVertex, IList<IEdge<TVertex>>> verticesAndEdges)

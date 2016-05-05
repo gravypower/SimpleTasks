@@ -55,12 +55,8 @@ namespace SimpleTasks
         {
             GuardOtherTasks(otherTasks);
 
-            for (var i = 0; i < otherTasks.Length; i++)
+            foreach (var otherTask in otherTasks)
             {
-                var otherTask = otherTasks[i];
-
-                GuardOtherTask(otherTask, i);
-
                 if (!_taskContainer.DoesContainTask(otherTask))
                     _taskContainer.RegisterEmptyDependicy(otherTask);
 
@@ -79,10 +75,17 @@ namespace SimpleTasks
         }
 
         [AssertionMethod]
-        private static void GuardOtherTasks([NotNull] string[] otherTasks)
+        private void GuardOtherTasks([NotNull] string[] otherTasks)
         {
             if (otherTasks == null)
                 throw new ArgumentNullOrEmptyException("otherTasks");
+
+            for (var i = 0; i < otherTasks.Length; i++)
+            {
+                var otherTask = otherTasks[i];
+                GuardOtherTask(otherTask, i);
+
+            }
         }
 
         [AssertionMethod]
@@ -92,7 +95,7 @@ namespace SimpleTasks
                 throw new ArgumentNullOrEmptyException("otherTasks at index " + i);
 
             if (_taskContainer.DoesDependicyExist(otherTask, Name))
-                throw new DependicyExistException();
+                throw new DependencyExistException();
         }
     }
 }

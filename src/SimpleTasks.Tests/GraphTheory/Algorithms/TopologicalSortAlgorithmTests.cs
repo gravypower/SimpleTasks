@@ -17,7 +17,6 @@ namespace SimpleTasks.Tests.GraphTheory.Algorithms
         public void SetUp()
         {
             Graph = new DirectedAcyclicGraph<string>();
-                
         }
 
         [Test]
@@ -47,7 +46,7 @@ namespace SimpleTasks.Tests.GraphTheory.Algorithms
         [Test]
         [TestCase("A", "B", "AB")]
         [TestCase("B", "A", "BA")]
-        public void GivenTwoVertices_WhenComputeCalled_SortedVerticesShouldBeSourted(
+        public void GivenTwoVertices_WhenComputeCalled_SortedVerticesShouldBeInCorrectOrder(
             string firstVertex,
             string secoundVertex, 
             string sortedVertices)
@@ -62,7 +61,7 @@ namespace SimpleTasks.Tests.GraphTheory.Algorithms
         }
 
         [Test]
-        public void GivenTwoVertices_ThatHaveAnEdge__WhenComputeCalled_SortedVerticesShouldBeSourted()
+        public void GivenTwoVertices_ThatHaveAnEdge__WhenComputeCalled_SortedVerticesShouldBeInCorrectOrder()
         {
             //Assign Act
             Graph.InsertVertex("A");
@@ -75,7 +74,7 @@ namespace SimpleTasks.Tests.GraphTheory.Algorithms
         }
 
         [Test]
-        public void GivenTwoVerticesAddedInReverse_ThatHaveAnEdge__WhenComputeCalled_SortedVerticesShouldBeSourted()
+        public void GivenTwoVerticesAddedInReverse_ThatHaveAnEdge__WhenComputeCalled_SortedVerticesShouldBeInCorrectOrder()
         {
             //Assign Act
             Graph.InsertVertex("B");
