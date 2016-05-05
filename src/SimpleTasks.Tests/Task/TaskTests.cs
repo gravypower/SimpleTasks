@@ -14,11 +14,11 @@ namespace SimpleTasks.Tests.Task
         public void SetUp()
         {
             var taskContainer = new SimpleTasks.TaskContainer();
-            Sut = taskContainer.Register("SomeTast",  () => GetType());
+            Sut = taskContainer.Register("SomeTask",  () => GetType());
         }
 
         [Test]
-        public void GivenTask_WhenAddingDependicyOfNull_ArgumentNullOrEmptyExceptionThrown()
+        public void GivenTask_WhenAddingDependencyOfNull_ArgumentNullOrEmptyExceptionThrown()
         {
             //Assign
             Action act = () => Sut.DependsOn(null);
@@ -29,7 +29,7 @@ namespace SimpleTasks.Tests.Task
         }
 
         [Test]
-        public void GivenTask_WhenAddingDependicyOfEmpty_ArgumentNullOrEmptyExceptionThrown()
+        public void GivenTask_WhenAddingDependencyOfEmpty_ArgumentNullOrEmptyExceptionThrown()
         {
             //Assign
             Action act = () => Sut.DependsOn(string.Empty);
@@ -40,7 +40,7 @@ namespace SimpleTasks.Tests.Task
         }
 
         [Test]
-        public void GivenTask_WhenAddingDependicyOfStringAndNull_ArgumentNullOrEmptyExceptionThrown()
+        public void GivenTask_WhenAddingDependencyOfDefaultString_ArgumentNullOrEmptyExceptionThrown()
         {
             //Assign
             Action act = () => Sut.DependsOn("SomeTask", default(string));
@@ -51,7 +51,7 @@ namespace SimpleTasks.Tests.Task
         }
 
         [Test]
-        public void GivenTask_WhenAddingDependicyOfStringAndEmpty_ArgumentNullOrEmptyExceptionThrown()
+        public void GivenTask_WhenAddingDependencyOfEmptyString_ArgumentNullOrEmptyExceptionThrown()
         {
             //Assign
             Action act = () => Sut.DependsOn("SomeTask", "");
@@ -63,7 +63,7 @@ namespace SimpleTasks.Tests.Task
 
 
         [Test]
-        public void GivenTask_WhenAddingSameDependicyTwice_ThenDependicyExistExceptionThrown()
+        public void GivenTask_WhenAddingSameDependencyTwice_ThenDependencyExistExceptionThrown()
         {
             //Assign
             Sut.DependsOn("SomeName");
@@ -72,7 +72,7 @@ namespace SimpleTasks.Tests.Task
             Action act = () => Sut.DependsOn("SomeName");
 
             //Assert
-            act.ShouldThrow<DependicyExistException>();
+            act.ShouldThrow<DependencyExistException>();
         }
     }
 }

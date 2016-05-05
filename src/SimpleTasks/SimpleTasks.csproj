@@ -45,7 +45,7 @@
     <Compile Include="Annotations\Annotations.cs" />
     <Compile Include="Exceptions\ArgumentNullOrEmptyException.cs" />
     <Compile Include="Exceptions\DependicyDoesNotExistException.cs" />
-    <Compile Include="Exceptions\DependicyExistException.cs" />
+    <Compile Include="Exceptions\DependencyExistException.cs" />
     <Compile Include="Exceptions\TaskExistsException.cs" />
     <Compile Include="GraphTheory\Algorithms\TopologicalSortAlgorithm.cs" />
     <Compile Include="GraphTheory\Graphs\DirectedAcyclicGraph.cs" />

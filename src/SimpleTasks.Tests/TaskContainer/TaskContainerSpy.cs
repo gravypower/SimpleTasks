@@ -9,9 +9,6 @@ namespace SimpleTasks.Tests.TaskContainer
             : base(enforceDependencyOnAddOrder)
         {
         }
-        public List<SimpleTasks.Task> TasksSpy
-        {
-            get { return Tasks.ToList(); }
-        }
+        public List<SimpleTasks.Task> TasksSpy => Tasks.ToList();
     }
 }

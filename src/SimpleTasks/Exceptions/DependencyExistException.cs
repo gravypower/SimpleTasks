@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 namespace SimpleTasks.Exceptions
 {
     [Serializable]
-    public class DependicyExistException : Exception
+    public class DependencyExistException : Exception
     {
         //
         // For guidelines regarding the creation of new exception types, see
@@ -13,21 +13,21 @@ namespace SimpleTasks.Exceptions
         //    http://msdn.microsoft.com/library/default.asp?url=/library/en-us/dncscol/html/csharp07192001.asp
         //
 
-        public DependicyExistException()
+        public DependencyExistException()
         {
         }
 
-        public DependicyExistException(string message)
+        public DependencyExistException(string message)
             : base(message)
         {
         }
 
-        public DependicyExistException(string message, Exception inner)
+        public DependencyExistException(string message, Exception inner)
             : base(message, inner)
         {
         }
 
-        protected DependicyExistException(
+        protected DependencyExistException(
             SerializationInfo info,
             StreamingContext context)
             : base(info, context)

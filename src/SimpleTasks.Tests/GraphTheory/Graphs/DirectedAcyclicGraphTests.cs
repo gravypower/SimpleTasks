@@ -57,7 +57,7 @@ namespace SimpleTasks.Tests.GraphTheory.Graphs
         }
 
         [Test]
-        public void WhenInsertingNullSourceVertix_ThenArgumentNullExceptionThrown()
+        public void WhenInsertingNullSourceVertex_ThenArgumentNullExceptionThrown()
         {
             //Arrange
             Action act = () => Cut.InsertEdge(null, null);
@@ -67,7 +67,7 @@ namespace SimpleTasks.Tests.GraphTheory.Graphs
         }
 
         [Test]
-        public void GivenSourceVertex_WhenInsertingNullTargetVertix_ThenArgumentNullExceptionThrown()
+        public void GivenSourceVertex_WhenInsertingNullTargetVertex_ThenArgumentNullExceptionThrown()
         {
             //Arrange
             var source = new DummeyType();
@@ -78,7 +78,7 @@ namespace SimpleTasks.Tests.GraphTheory.Graphs
         }
 
         [Test]
-        public void GivenTargetVertex_WhenInsertingNullSourceVertix_ThenArgumentNullExceptionThrown()
+        public void GivenTargetVertex_WhenInsertingNullSourceVertex_ThenArgumentNullExceptionThrown()
         {
             //Arrange
             var target = new DummeyType();
@@ -274,7 +274,7 @@ namespace SimpleTasks.Tests.GraphTheory.Graphs
 
 
         [Test]
-        public void GivenFaveVertices_WhenAddingCyclicEdges_ThenNonAcyclicGraphExceptionThrown()
+        public void GivenFiveVertices_WhenAddingCyclicEdges_ThenNonAcyclicGraphExceptionThrown()
         {
             //Arrange
             var vertexOne = new DummeyType("vertexOne");
