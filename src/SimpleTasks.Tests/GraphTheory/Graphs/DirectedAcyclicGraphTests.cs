@@ -1,33 +1,31 @@
 ﻿using FluentAssertions;
-using NUnit.Framework;
 using SimpleTasks.GraphTheory.Graphs;
 using System;
 using SimpleTasks.GraphTheory.Graphs.Exceptions;
+using Xunit;
 
 namespace SimpleTasks.Tests.GraphTheory.Graphs
 {
-    [TestFixture]
     public class DirectedAcyclicGraphTests
     {
         public DirectedAcyclicGraph<DummeyType> Cut;
-
-        [SetUp]
-        public void SetUp()
+        
+        public DirectedAcyclicGraphTests()
         {
             Cut = new DirectedAcyclicGraph<DummeyType>();
         }
 
-        [Test]
+        [Fact]
         public void WhenInsertingNullVertex_ThenArgumentNullExceptionThrown()
         {
             //Arrange
             Action act = () => Cut.InsertVertex(null);
 
             //Act Assert
-            act.ShouldThrow<ArgumentNullException>();
+            act.Should().Throw<ArgumentNullException>();
         }
 
-        [Test]
+        [Fact]
         public void WhenInsertingVertex_ThenVertexIsInGraph()
         {
             //Arrange
@@ -40,7 +38,7 @@ namespace SimpleTasks.Tests.GraphTheory.Graphs
             Cut.VerticesAndEdges.Should().ContainKey(vertex);
         }
 
-        [Test]
+        [Fact]
         public void WhenInsertingTwoVertices_ThenVerticesAreInGraph()
         {
             //Arrange
@@ -56,17 +54,17 @@ namespace SimpleTasks.Tests.GraphTheory.Graphs
             Cut.VerticesAndEdges.Should().ContainKey(vertex2);
         }
 
-        [Test]
+        [Fact]
         public void WhenInsertingNullSourceVertex_ThenArgumentNullExceptionThrown()
         {
             //Arrange
             Action act = () => Cut.InsertEdge(null, null);
 
             //Act Assert
-            act.ShouldThrow<ArgumentNullException>();
+            act.Should().Throw<ArgumentNullException>();
         }
 
-        [Test]
+        [Fact]
         public void GivenSourceVertex_WhenInsertingNullTargetVertex_ThenArgumentNullExceptionThrown()
         {
             //Arrange
@@ -74,10 +72,10 @@ namespace SimpleTasks.Tests.GraphTheory.Graphs
             Action act = () => Cut.InsertEdge(source, null);
 
             //Act Assert
-            act.ShouldThrow<ArgumentNullException>();
+            act.Should().Throw<ArgumentNullException>();
         }
 
-        [Test]
+        [Fact]
         public void GivenTargetVertex_WhenInsertingNullSourceVertex_ThenArgumentNullExceptionThrown()
         {
             //Arrange
@@ -85,10 +83,10 @@ namespace SimpleTasks.Tests.GraphTheory.Graphs
             Action act = () => Cut.InsertEdge(null, target);
 
             //Act Assert
-            act.ShouldThrow<ArgumentNullException>();
+            act.Should().Throw<ArgumentNullException>();
         }
 
-        [Test]
+        [Fact]
         public void GivenNoVertices_WhenInsertingAnEdge_ThenNoVerticesExceptionThrown()
         {
             //Arrange
@@ -98,10 +96,10 @@ namespace SimpleTasks.Tests.GraphTheory.Graphs
             Action act = () => Cut.InsertEdge(source, target);
 
             //Act Assert
-            act.ShouldThrow<NoVerticesException>();
+            act.Should().Throw<NoVerticesException>();
         }
 
-        [Test]
+        [Fact]
         public void GivenSourceVertex_WhenInsertingAnEdge_ThenVertexDoesNotExistExceptionThrown()
         {
             //Arrange
@@ -113,10 +111,10 @@ namespace SimpleTasks.Tests.GraphTheory.Graphs
             Action act = () => Cut.InsertEdge(source, target);
 
             //Act Assert
-            act.ShouldThrow<VertexDoesNotExisException>();
+            act.Should().Throw<VertexDoesNotExisException>();
         }
 
-        [Test]
+        [Fact]
         public void GivenTargetVertex_WhenInsertingAnEdge_ThenVertexDoesNotExistExceptionThrown()
         {
             //Arrange
@@ -127,10 +125,10 @@ namespace SimpleTasks.Tests.GraphTheory.Graphs
             Action act = () => Cut.InsertEdge(source, target);
 
             //Act Assert
-            act.ShouldThrow<VertexDoesNotExisException>();
+            act.Should().Throw<VertexDoesNotExisException>();
         }
 
-        [Test]
+        [Fact]
         public void GivenOneVertex_WhenInsertingAnEdgeToItsSelf_ThenInvalidEdgeThrown()
         {
             //Arrange
@@ -140,10 +138,10 @@ namespace SimpleTasks.Tests.GraphTheory.Graphs
             Action act = () => Cut.InsertEdge(source, source);
 
             //Act Assert
-            act.ShouldThrow<InvalidEdgeException>();
+            act.Should().Throw<InvalidEdgeException>();
         }
 
-        [Test]
+        [Fact]
         public void GivenTwoVertices_WhenInsertingAnEdge_ThenNoExceptionThrown()
         {
             //Arrange
@@ -155,10 +153,10 @@ namespace SimpleTasks.Tests.GraphTheory.Graphs
             Action act = () => Cut.InsertEdge(source, target);
 
             //Act Assert
-            act.ShouldNotThrow();
+            act.Should().NotThrow();
         }
 
-        [Test]
+        [Fact]
         public void GivenTwoVertices_WhenAddingAnEdge_ThenEdgeAdded()
         {
             //Arrange
@@ -171,11 +169,11 @@ namespace SimpleTasks.Tests.GraphTheory.Graphs
             Cut.InsertEdge(source, target);
 
             //Assert
-            Cut.VerticesAndEdges[source][0].ShouldBeEquivalentTo(
+            Cut.VerticesAndEdges[source][0].Should().BeEquivalentTo(
                 new Edge<DummeyType> {Source = source, Target = target});
         }
 
-        [Test]
+        [Fact]
         public void GivenTwoVertices_WhenAddingEdgeInBothDirections_ThenNonAcyclicGraphExceptionThrown()
         {
             //Arrange
@@ -187,10 +185,10 @@ namespace SimpleTasks.Tests.GraphTheory.Graphs
             Action act = () => Cut.InsertEdge(target, source);
 
             //Act Assert
-            act.ShouldThrow<NonAcyclicGraphException>();
+            act.Should().Throw<NonAcyclicGraphException>();
         }
 
-        [Test]
+        [Fact]
         public void GivenTwoVertices_WhenAddingEdgeInBeforeSecound_ThenNoExceptionThrown()
         {
             //Arrange
@@ -202,10 +200,10 @@ namespace SimpleTasks.Tests.GraphTheory.Graphs
             Action act = () => Cut.InsertVertex(target);
 
             //Act Assert
-            act.ShouldNotThrow();
+            act.Should().NotThrow();
         }
 
-        [Test]
+        [Fact]
         public void GivenThreeVertices_WhenAddingTwoEdges_NoExceptionThrown()
         {
             //Arrange
@@ -221,10 +219,10 @@ namespace SimpleTasks.Tests.GraphTheory.Graphs
             Action act = () => Cut.InsertEdge(source, anotherTarget);
 
             //Act Assert
-            act.ShouldNotThrow();
+            act.Should().NotThrow();
         }
 
-        [Test]
+        [Fact]
         public void GivenThreeVertices_WhenAddingCyclicEdges_ThenNonAcyclicGraphExceptionThrown()
         {
             //Arrange
@@ -243,10 +241,10 @@ namespace SimpleTasks.Tests.GraphTheory.Graphs
             Action act = () => Cut.InsertEdge(vertexThree, vertexOne);
 
             //Act Assert
-            act.ShouldThrow<NonAcyclicGraphException>();
+            act.Should().Throw<NonAcyclicGraphException>();
         }
 
-        [Test]
+        [Fact]
         public void GivenFourVertices_WhenAddingCyclicEdges_ThenNonAcyclicGraphExceptionThrown()
         {
             //Arrange
@@ -269,11 +267,11 @@ namespace SimpleTasks.Tests.GraphTheory.Graphs
             Action act = () => Cut.InsertEdge(vertexFour, vertexOne);
 
             //Act Assert
-            act.ShouldThrow<NonAcyclicGraphException>();
+            act.Should().Throw<NonAcyclicGraphException>();
         }
 
 
-        [Test]
+        [Fact]
         public void GivenFiveVertices_WhenAddingCyclicEdges_ThenNonAcyclicGraphExceptionThrown()
         {
             //Arrange
@@ -299,7 +297,7 @@ namespace SimpleTasks.Tests.GraphTheory.Graphs
             Action act = () => Cut.InsertEdge(vertexFour, vertexOne);
 
             //Act Assert
-            act.ShouldThrow<NonAcyclicGraphException>();
+            act.Should().Throw<NonAcyclicGraphException>();
         }
     }
 }

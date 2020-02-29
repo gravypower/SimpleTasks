@@ -84,7 +84,6 @@ namespace SimpleTasks
             {
                 var otherTask = otherTasks[i];
                 GuardOtherTask(otherTask, i);
-
             }
         }
 

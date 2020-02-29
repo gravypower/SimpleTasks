@@ -1,19 +1,18 @@
 ﻿using System;
 using FluentAssertions;
-using NUnit.Framework;
 using SimpleTasks.Playground.SupportOfTaskTailures.TaskRunnerNotHandlingExceptionsNatively;
+using Xunit;
 
 namespace SimpleTasks.Playground.SupportOfTaskTailures
 {
-    [TestFixture]
     public class Play
     {
-        [Test]
+        [Fact]
         public void TaskRunnerHandlingExceptionsNatively()
         {
         }
 
-        [Test]
+        [Fact]
         public void TaskRunnerNotHandlingExceptionsNatively_TaskHandelsException()
         {
             var container = new TaskRunnerNotHandlingExceptionsNatively.TaskContainer();
@@ -29,7 +28,7 @@ namespace SimpleTasks.Playground.SupportOfTaskTailures
             onExceptionTask.Should().Be(task);
         }
 
-        [Test]
+        [Fact]
         public void TaskRunnerNotHandlingExceptionsNatively_TaskHandelsException2()
         {
             var container = new TaskRunnerNotHandlingExceptionsNatively.TaskContainer();
@@ -48,7 +47,7 @@ namespace SimpleTasks.Playground.SupportOfTaskTailures
             _onExceptionTask = eventArgs.Task;
         }
 
-        [Test]
+        [Fact]
         public void TaskRunnerNotHandlingExceptionsNatively_TaskContainerHandelsExceptions()
         {
             var container = new TaskRunnerNotHandlingExceptionsNatively.TaskContainer();
@@ -64,7 +63,7 @@ namespace SimpleTasks.Playground.SupportOfTaskTailures
             onExceptionTask.Should().Be(task);
         }
 
-        [Test]
+        [Fact]
         public void TaskRunnerNotHandlingExceptionsNatively()
         {
             var container = new TaskRunnerNotHandlingExceptionsNatively.TaskContainer();
@@ -74,7 +73,7 @@ namespace SimpleTasks.Playground.SupportOfTaskTailures
             Action act = () => container.Run();
 
             //Act Assert
-            act.ShouldThrow<Exception>();
+            act.Should().Throw<Exception>();
         }
 
 

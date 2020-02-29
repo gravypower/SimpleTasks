@@ -1,21 +1,20 @@
 ﻿using System.Collections.Generic;
 using FluentAssertions;
-using NUnit.Framework;
+using Xunit;
 
 namespace SimpleTasks.Tests.TaskContainer
 {
-    [TestFixture]
     public class TaskContainerAPITests
     {
         public TaskContainerSpy Sut { get; set; }
 
-        [SetUp]
-        public void SetUp()
+
+        public TaskContainerAPITests()
         {
             Sut = new TaskContainerSpy(false);
         }
 
-        [Test]
+        [Fact]
         public void CanChainDependencies()
         {
             //Assign
@@ -32,7 +31,7 @@ namespace SimpleTasks.Tests.TaskContainer
             callOrder.Should().Be("231");
         }
 
-        [Test]
+        [Fact]
         public void CanDeclareTaskAsDependency()
         {
             //Assign
@@ -51,7 +50,7 @@ namespace SimpleTasks.Tests.TaskContainer
             callOrder.Should().Be("231");
         }
 
-        [Test]
+        [Fact]
         public void GivenTwoTasksOneNamed1AndTwoAnObject_CanDeclareTaskAsDependency()
         {
             //Assign

@@ -1,21 +1,19 @@
 ﻿using System.Linq;
 using FluentAssertions;
-using NUnit.Framework;
+using Xunit;
 
 namespace SimpleTasks.Tests.TaskContainer
 {
-    [TestFixture]
     public class ConditionalTaskTastsTests
     {
         public TaskContainerSpy Sut { get; set; }
-
-        [SetUp]
-        public void SetUp()
+        
+        public ConditionalTaskTastsTests()
         {
             Sut = new TaskContainerSpy(false);
         }
 
-        [Test]
+        [Fact]
         public void GivenConditionalTask_WhenTaskIsRegistered_ThenTaskAddedHasCondition()
         {
             var callOrder = string.Empty;
@@ -27,7 +25,7 @@ namespace SimpleTasks.Tests.TaskContainer
             Sut.TasksSpy.First().Condition.Should().NotBeNull();
         }
 
-        [Test]
+        [Fact]
         public void GivenConditionalOfFalseTask_WhenTasksAreExcuted_TaskIsNotCalled()
         {
 

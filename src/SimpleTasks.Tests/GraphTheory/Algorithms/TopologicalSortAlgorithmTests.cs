@@ -1,25 +1,23 @@
 ﻿using System;
 using System.Diagnostics;
 using FluentAssertions;
-using NUnit.Framework;
 using SimpleTasks.GraphTheory.Algorithms;
 using SimpleTasks.GraphTheory.Graphs;
+using Xunit;
 
 namespace SimpleTasks.Tests.GraphTheory.Algorithms
 {
-    [TestFixture]
     public class TopologicalSortAlgorithmTests
     {
         public TopologicalSortAlgorithm<string> Cut;
         public IGraph<string> Graph;
 
-        [SetUp]
-        public void SetUp()
+        public TopologicalSortAlgorithmTests()
         {
             Graph = new DirectedAcyclicGraph<string>();
         }
 
-        [Test]
+        [Fact]
         public void GivenOneVertex_WhenComputeCalled_SortedVerticesContainsThatVertex()
         {
             //Assign Act
@@ -30,7 +28,7 @@ namespace SimpleTasks.Tests.GraphTheory.Algorithms
             Cut.SortedVertices.Should().Contain("A");
         }
 
-        [Test]
+        [Fact]
         public void GivenTwoVertices_WhenComputeCalled_SortedVerticesContainsThoesVertices()
         {
             //Assign Act
@@ -43,9 +41,9 @@ namespace SimpleTasks.Tests.GraphTheory.Algorithms
             Cut.SortedVertices.Should().Contain("B");
         }
 
-        [Test]
-        [TestCase("A", "B", "AB")]
-        [TestCase("B", "A", "BA")]
+        [Theory]
+        [InlineData("A", "B", "AB")]
+        [InlineData("B", "A", "BA")]
         public void GivenTwoVertices_WhenComputeCalled_SortedVerticesShouldBeInCorrectOrder(
             string firstVertex,
             string secoundVertex, 
@@ -60,7 +58,7 @@ namespace SimpleTasks.Tests.GraphTheory.Algorithms
             AssertOrder(sortedVertices);
         }
 
-        [Test]
+        [Fact]
         public void GivenTwoVertices_ThatHaveAnEdge__WhenComputeCalled_SortedVerticesShouldBeInCorrectOrder()
         {
             //Assign Act
@@ -73,7 +71,7 @@ namespace SimpleTasks.Tests.GraphTheory.Algorithms
             AssertOrder("AB");
         }
 
-        [Test]
+        [Fact]
         public void GivenTwoVerticesAddedInReverse_ThatHaveAnEdge__WhenComputeCalled_SortedVerticesShouldBeInCorrectOrder()
         {
             //Assign Act
@@ -86,7 +84,7 @@ namespace SimpleTasks.Tests.GraphTheory.Algorithms
             AssertOrder("AB");
         }
 
-        [Test]
+        [Fact]
         public void GivenTwoVerticesAndEdge__WhenHasPredecessorsCalledOnA_ShouldBeFalse()
         {
             //Assign
@@ -102,7 +100,7 @@ namespace SimpleTasks.Tests.GraphTheory.Algorithms
         }
 
 
-        [Test]
+        [Fact]
         public void GivenThreeVerticesAndEdge__WhenHasPredecessorsCalledOnA_ShouldBeFalse()
         {
             //Assign
@@ -119,7 +117,7 @@ namespace SimpleTasks.Tests.GraphTheory.Algorithms
             result.Should().BeFalse();
         }
 
-        [Test]
+        [Fact]
         public void GivenThreeVerticesAndEdge__WhenHasPredecessorsCalledOnB_ShouldBeFalse()
         {
             //Assign
@@ -136,7 +134,7 @@ namespace SimpleTasks.Tests.GraphTheory.Algorithms
             result.Should().BeTrue();
         }
 
-        [Test]
+        [Fact]
         public void GivenThreeVerticesBAC_ThatHaveAnEdgeABBC__WhenComputeCalled_SortedVerticesShouldBeSourted()
         {
             //Assign Act
@@ -151,7 +149,7 @@ namespace SimpleTasks.Tests.GraphTheory.Algorithms
             AssertOrder("ABC");
         }
 
-        [Test]
+        [Fact]
         public void GivenThreeVerticesCAB_ThatHaveAnEdgeABBC__WhenComputeCalled_SortedVerticesShouldBeSourted()
         {
             //Assign Act
@@ -166,7 +164,7 @@ namespace SimpleTasks.Tests.GraphTheory.Algorithms
             AssertOrder("ABC");
         }
 
-        [Test]
+        [Fact]
         public void GivenFourVerticesCABD_ThatHaveAnEdgeABBCCD__WhenComputeCalled_SortedVerticesShouldBeSourted()
         {
             //Assign Act
@@ -183,7 +181,7 @@ namespace SimpleTasks.Tests.GraphTheory.Algorithms
             AssertOrder("ABCD");
         }
 
-        [Test]
+        [Fact]
         public void GivenFourVerticesCABD_ThatHaveAnEdgeABACCD__WhenComputeCalled_SortedVerticesShouldBeSourted()
         {
             //Assign Act
@@ -200,7 +198,7 @@ namespace SimpleTasks.Tests.GraphTheory.Algorithms
             AssertOrder("ABCD");
         }
 
-        [Test]
+        [Fact]
         public void GivenFourVerticesCABD_ThatHaveAnEdgeACABAD__WhenComputeCalled_SortedVerticesShouldBeSourted()
         {
             //Assign Act
@@ -217,7 +215,7 @@ namespace SimpleTasks.Tests.GraphTheory.Algorithms
             AssertOrder("ABDC");
         }
 
-        [Test]
+        [Fact]
         public void Intergreation()
         {
             //Assign Act

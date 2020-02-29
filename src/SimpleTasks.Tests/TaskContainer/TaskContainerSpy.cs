@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace SimpleTasks.Tests.TaskContainer
 {
-    public class TaskContainerSpy : SimpleTasks.TaskContainer
+    public class TaskContainerSpy : global::SimpleTasks.TaskContainer
     {
         public TaskContainerSpy(bool enforceDependencyOnAddOrder)
             : base(enforceDependencyOnAddOrder)

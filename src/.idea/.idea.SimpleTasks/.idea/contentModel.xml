@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\projects\SimpleTasks\src" t="IncludeFlat">
+      <e p=".nuget" t="Include">
+        <e p="NuGet.Config" t="Include" />
+        <e p="NuGet.exe" t="Include" />
+        <e p="NuGet.targets" t="Include" />
+      </e>
+      <e p="packages" t="ExcludeRecursive" />
+      <e p="SimpleTasks" t="IncludeRecursive">
+        <e p="AbstractTask.cs" t="Include" />
+        <e p="AbstractTaskContainer.cs" t="Include" />
+        <e p="Annotations" t="Include">
+          <e p="Annotations.cs" t="Include" />
+        </e>
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Exceptions" t="Include">
+          <e p="ArgumentNullOrEmptyException.cs" t="Include" />
+          <e p="DependencyExistException.cs" t="Include" />
+          <e p="DependicyDoesNotExistException.cs" t="Include" />
+          <e p="TaskExistsException.cs" t="Include" />
+        </e>
+        <e p="GraphTheory" t="Include">
+          <e p="Algorithms" t="Include">
+            <e p="AlgorithmExtensions.cs" t="Include" />
+            <e p="TopologicalSortAlgorithm.cs" t="Include" />
+          </e>
+          <e p="Graphs" t="Include">
+            <e p="DirectedAcyclicGraph.cs" t="Include" />
+            <e p="Edge.cs" t="Include" />
+            <e p="Exceptions" t="Include">
+              <e p="InvalidEdgeException.cs" t="Include" />
+              <e p="NonAcyclicGraphException.cs" t="Include" />
+              <e p="NoVerticesException.cs" t="Include" />
+              <e p="VertexDoesNotExistException.cs" t="Include" />
+            </e>
+            <e p="Graph.cs" t="Include" />
+            <e p="GraphExtensions.cs" t="Include" />
+            <e p="IEdge.cs" t="Include" />
+            <e p="IGraph.cs" t="Include" />
+          </e>
+        </e>
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netstandard2.1" t="Include">
+              <e p="SimpleTasks.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="ObjectIDGeneratorFacade.cs" t="Include" />
+        <e p="SimpleTasks.csproj" t="IncludeRecursive" />
+        <e p="Task.cs" t="Include" />
+        <e p="TaskContainer.cs" t="Include" />
+      </e>
+      <e p="SimpleTasks.Playground" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp3.1" t="Include">
+              <e p="SimpleTasks.Playground.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="SimpleTasks.Playground.csproj" t="IncludeRecursive" />
+        <e p="SupportOfTaskTailures" t="Include">
+          <e p="Play.cs" t="Include" />
+          <e p="TaskRunnerNotHandlingExceptionsNatively" t="Include">
+            <e p="Task.cs" t="Include" />
+            <e p="TaskContainer.cs" t="Include" />
+          </e>
+        </e>
+      </e>
+      <e p="SimpleTasks.sln" t="IncludeFlat" />
+      <e p="SimpleTasks.Tests" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="GraphTheory" t="Include">
+          <e p="Algorithms" t="Include">
+            <e p="TopologicalSortAlgorithmTests.cs" t="Include" />
+          </e>
+          <e p="Graphs" t="Include">
+            <e p="DirectedAcyclicGraphTests.cs" t="Include" />
+            <e p="DummeyType.cs" t="Include" />
+          </e>
+        </e>
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp3.1" t="Include">
+              <e p="SimpleTasks.Tests.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="SimpleTasks.Tests.csproj" t="IncludeRecursive" />
+        <e p="Task" t="Include">
+          <e p="DummyTask.cs" t="Include" />
+          <e p="TaskTests.cs" t="Include" />
+        </e>
+        <e p="TaskContainer" t="Include">
+          <e p="ConditionalTaskTastsTests.cs" t="Include" />
+          <e p="TaskContainerAPITests.cs" t="Include" />
+          <e p="TaskContainerSpy.cs" t="Include" />
+          <e p="TaskContainerTests.cs" t="Include" />
+          <e p="TaskSpy.cs" t="Include" />
+        </e>
+      </e>
+    </e>
+    <e p="C:\Users\Admin\.nuget\packages\microsoft.net.test.sdk\16.2.0\build\netcoreapp1.0" t="Include">
+      <e p="Microsoft.NET.Test.Sdk.Program.cs" t="Include" />
+    </e>
+    <e p="C:\Users\Admin\.nuget\packages\xunit.runner.visualstudio\2.4.0\build\netcoreapp1.0\xunit.runner.reporters.netcoreapp10.dll" t="Include" />
+    <e p="C:\Users\Admin\.nuget\packages\xunit.runner.visualstudio\2.4.0\build\netcoreapp1.0\xunit.runner.utility.netcoreapp10.dll" t="Include" />
+    <e p="C:\Users\Admin\.nuget\packages\xunit.runner.visualstudio\2.4.0\build\netcoreapp1.0\xunit.runner.visualstudio.dotnetcore.testadapter.dll" t="Include" />
+    <e p="C:\Users\Admin\.Rider2019.3\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\Admin\.Rider2019.3\system\resharper-host\local\Transient\ReSharperHost\v193\SolutionCaches\_SimpleTasks.-775345829.00" t="ExcludeRecursive" />
+  </component>
+</project>

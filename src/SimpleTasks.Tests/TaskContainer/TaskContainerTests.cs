@@ -2,23 +2,21 @@
 using System.Collections.Generic;
 using System.Linq;
 using FluentAssertions;
-using NUnit.Framework;
 using SimpleTasks.Exceptions;
+using Xunit;
 
 namespace SimpleTasks.Tests.TaskContainer
 {
-    [TestFixture]
     public class TaskContainerTests
     {
         public TaskContainerSpy Sut { get; set; }
-
-        [SetUp]
-        public void SetUp()
+        
+        public TaskContainerTests()
         {
             Sut = new TaskContainerSpy(false);
         }
 
-        [Test]
+        [Fact]
         public void GivenNullTask_WhenAddedToContainer_ThenNullIsGuarded()
         {
             //Assign
@@ -26,22 +24,22 @@ namespace SimpleTasks.Tests.TaskContainer
             Action act = () => Sut.Register(taskName, null);
 
             //Act Assert
-            act.ShouldThrow<ArgumentNullException>()
-                .WithMessage("Value cannot be null.\r\nParameter name: action");
+            act.Should().Throw<ArgumentNullException>()
+                .WithMessage("Value cannot be null. (Parameter 'action')");
         }
 
-        [Test]
+        [Fact]
         public void GivenNullTaskName_WhenAddedToContainer_ThenNullIsGuarded()
         {
             //Assign
             Action act = () => Sut.Register(null, DoNothing);
 
             //Act Assert
-            act.ShouldThrow<ArgumentNullOrEmptyException>()
-                .WithMessage("Value cannot be null or empty.\r\nParameter name: taskName");
+            act.Should().Throw<ArgumentNullOrEmptyException>()
+                .WithMessage("Value cannot be null or empty. (Parameter 'taskName')");
         }
 
-        [Test]
+        [Fact]
         public void GivenTask_WhenAddedToContainer_ThenNoExceptionIsThrown()
         {
             //Assign
@@ -49,10 +47,10 @@ namespace SimpleTasks.Tests.TaskContainer
             Action act = () => Sut.Register(taskName, DoNothing);
 
             //Act Assert
-            act.ShouldNotThrow();
+            act.Should().NotThrow();
         }
 
-        [Test]
+        [Fact]
         public void GivenTask_WhenAddedToContainerTwice_ThenTaskExistsExceptionIsThrown()
         {
             //Assign
@@ -61,10 +59,10 @@ namespace SimpleTasks.Tests.TaskContainer
             Action act = () => Sut.Register(taskName, DoNothing);
 
             //Act Assert
-            act.ShouldThrow<TaskExistsException>();
+            act.Should().Throw<TaskExistsException>();
         }
 
-        [Test]
+        [Fact]
         public void GivenTask_WhenAddedToContainer_ThenItIsAddedToList()
         {
             //Act
@@ -76,7 +74,7 @@ namespace SimpleTasks.Tests.TaskContainer
             Sut.TasksSpy.Should().HaveCount(1);
         }
 
-        [Test]
+        [Fact]
         public void GivenTask_WhenAddedToContainer_ThenItIsAddedToList_AndNameIsCorrect()
         {
             //Assign
@@ -91,8 +89,8 @@ namespace SimpleTasks.Tests.TaskContainer
             task.Name.Should().Be(taskName);
         }
 
-        [Test]
-        //THis might need to be moved to the Task Tests
+        [Fact]
+        //This might need to be moved to the Task Tests
         public void GivenTaskAddedToContainer_WhenActionIsInvoked_ActionHasBeenInvoked()
         {
             //Assign
@@ -109,7 +107,7 @@ namespace SimpleTasks.Tests.TaskContainer
             task.Invoked.Should().BeTrue();
         }
 
-        [Test]
+        [Fact]
         public void GivenTaskAddedToContainer_WhenRunIsCalled_TaskIsRun()
         {
             //Assign
@@ -124,7 +122,7 @@ namespace SimpleTasks.Tests.TaskContainer
             called.Should().BeTrue();
         }
 
-        [Test]
+        [Fact]
         public void GivenTwoTasksAddedToContainer_WhenRunIsCalled_TaskIsRun()
         {
             //Assign
@@ -142,7 +140,7 @@ namespace SimpleTasks.Tests.TaskContainer
             called2.Should().BeTrue();
         }
 
-        [Test]
+        [Fact]
         public void GivenOneTaskTheDependsOnATastThatDoesNotExist_WhereRUnCalled_DependantTaskDoesNotExistExceptionThrown()
         {
             //Assign
@@ -151,10 +149,10 @@ namespace SimpleTasks.Tests.TaskContainer
             Action act = () => Sut.Run();
 
             //Act Assert
-            act.ShouldThrow<DependicyDoesNotExistException>();
+            act.Should().Throw<DependicyDoesNotExistException>();
         }
 
-        [Test]
+        [Fact]
         public void Given2Tasks_1DependsOn2_WhenRunCalledOrderIs21()
         {
             //Assign
@@ -170,7 +168,7 @@ namespace SimpleTasks.Tests.TaskContainer
             callOrder.Should().Be("21");
         }
 
-        [Test]
+        [Fact]
         public void Given3Tasks_3DependsOn2And2DependsOn1_WhenRunCalledOrderIs123()
         {
             //Assign
@@ -187,7 +185,7 @@ namespace SimpleTasks.Tests.TaskContainer
             callOrder.Should().Be("123");
         }
 
-        [Test]
+        [Fact]
         public void GivenTwoTasks_WhereTheTwoTasksHaveACircularDependency_CircularDependencyExceptionThrown()
         {
             //Assign
@@ -196,10 +194,10 @@ namespace SimpleTasks.Tests.TaskContainer
             Action act = () => Sut.Register("SomeOtherName", DoNothing).DependsOn("SomeName");
 
             //Act Assert
-            act.ShouldThrow<SimpleTasks.GraphTheory.Graphs.Exceptions.NonAcyclicGraphException>();
+            act.Should().Throw<SimpleTasks.GraphTheory.Graphs.Exceptions.NonAcyclicGraphException>();
         }
 
-        [Test]
+        [Fact]
         public void GivenCustomTaskClass_WhenAddedToContainer_CustomClassAdded()
         {
             //Assign
@@ -213,7 +211,7 @@ namespace SimpleTasks.Tests.TaskContainer
             Sut.TasksSpy.Should().HaveCount(1);
         }
 
-        [Test]
+        [Fact]
         public void GivenCustomTaskAddedToContainer_WhenRunIsCalled_TaskIsRun()
         {
             //Assign
@@ -227,7 +225,7 @@ namespace SimpleTasks.Tests.TaskContainer
             customTask.Called.Should().BeTrue();
         }
 
-        [Test]
+        [Fact]
         public void GivenCustomTask_WhenAddedToContainerTwice_ThenTaskExistsExceptionIsThrown()
         {
             //Assign
@@ -236,10 +234,10 @@ namespace SimpleTasks.Tests.TaskContainer
             Action act = () => Sut.Register(customTask.Run);
 
             //Act Assert
-            act.ShouldThrow<TaskExistsException>();
+            act.Should().Throw<TaskExistsException>();
         }
 
-        [Test]
+        [Fact]
         public void GivenCustomTask_WhenTwoToContainer_ThenTaskExistsExceptionIsNOtThrown()
         {
             //Assign
@@ -249,10 +247,10 @@ namespace SimpleTasks.Tests.TaskContainer
             Action act = () => Sut.Register(customTask2.Run);
 
             //Act Assert
-            act.ShouldNotThrow<TaskExistsException>();
+            act.Should().NotThrow<TaskExistsException>();
         }
 
-        [Test]
+        [Fact]
         public void GivenOneCustomTaskTheDependsOnATastThatDoesNotExist_WhereRunCalled_DependantTaskDoesNotExistExceptionThrown()
         {
             //Assign
@@ -262,10 +260,10 @@ namespace SimpleTasks.Tests.TaskContainer
             Action act = () => Sut.Run();
 
             //Act Assert
-            act.ShouldThrow<DependicyDoesNotExistException>();
+            act.Should().Throw<DependicyDoesNotExistException>();
         }
 
-        [Test]
+        [Fact]
         public void GivenOneCustomTaskTheDependsOnACustomTastThatDoesNotExist_WhereRunCalled_DependantTaskDoesNotExistExceptionThrown()
         {
             //Assign
@@ -276,10 +274,10 @@ namespace SimpleTasks.Tests.TaskContainer
             Action act = () => Sut.Run();
 
             //Act Assert
-            act.ShouldThrow<DependicyDoesNotExistException>();
+            act.Should().Throw<DependicyDoesNotExistException>();
         }
 
-        [Test]
+        [Fact]
         public void Given2CustomTasks_1DependsOn2_WhenRunCalledOrderIs21()
         {
             //Assign
@@ -298,7 +296,7 @@ namespace SimpleTasks.Tests.TaskContainer
             string.Join("", callOrder).Should().Be("21");
         }
 
-        [Test]
+        [Fact]
         public void Given3CustomTasks_3DependsOn2And2DependsOn1_WhenRunCalledOrderIs123()
         {
             //Assign
@@ -319,7 +317,7 @@ namespace SimpleTasks.Tests.TaskContainer
             string.Join("", callOrder).Should().Be("123");
         }
 
-        [Test]
+        [Fact]
         public void Given3CustomTasks_AddOrderDependicy_WhenRunCalledOrderIs123()
         {
             //Assign
@@ -342,7 +340,7 @@ namespace SimpleTasks.Tests.TaskContainer
             string.Join("", callOrder).Should().Be("132");
         }
 
-        [Test]
+        [Fact]
         public void GivenCustomTwoTasks_WhereTheTwoTasksHaveACircularDependency_CircularDependencyExceptionThrown()
         {
             //Assign
@@ -353,10 +351,10 @@ namespace SimpleTasks.Tests.TaskContainer
             Action act = () => Sut.Register(customTask2.Run).DependsOn(customTask);
 
             //Act Assert
-            act.ShouldThrow<SimpleTasks.GraphTheory.Graphs.Exceptions.NonAcyclicGraphException>();
+            act.Should().Throw<SimpleTasks.GraphTheory.Graphs.Exceptions.NonAcyclicGraphException>();
         }
 
-        [Test]
+        [Fact]
         public void GivenTwoTasksOneNamed1AndTwoAnObject_DependicyNamesDoNotCollide()
         {
             //Assign
