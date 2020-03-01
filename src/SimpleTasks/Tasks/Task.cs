@@ -3,21 +3,17 @@ using System.Linq;
 using SimpleTasks.Annotations;
 using SimpleTasks.Exceptions;
 
-namespace SimpleTasks
+namespace SimpleTasks.Tasks
 {
-    public class AbstractTask<TTask> where TTask : AbstractTask<TTask>
+    public class Task:Vertex
     {
-        private readonly AbstractTaskContainer<TTask> _taskContainer;
-
-        public string Name { get; private set; }
-
+        private readonly TaskContainer _taskContainer;
+        
         public Action Action { get; private set; }
-
-        public bool Invoked { get; private set; }
 
         public Func<bool> Condition { get; private set; }
 
-        public AbstractTask(AbstractTaskContainer<TTask> taskContainer, string name, Action action, Func<bool> condition)
+        public Task(TaskContainer taskContainer, string name, Action action, Func<bool> condition)
         {
             _taskContainer = taskContainer;
             Name = name;
@@ -25,25 +21,25 @@ namespace SimpleTasks
             Condition = condition;
         }
 
-        public AbstractTask<TTask> DependsOn(string name, Action action)
+        public Task DependsOn(string name, Action action)
         {
             _taskContainer.Register(name, action);
-            _taskContainer.RegisterDependicy(name, Name);
+            _taskContainer.RegisterDependency(name, Name);
             return this;
         }
 
-        public AbstractTask<TTask> DependsOn(object task, Action action)
+        public Task DependsOn(object task, Action action)
         {
             var name = ObjectIdGeneratorFacade.GetId(task);
             return DependsOn(name, action);
         }
 
-        public AbstractTask<TTask> DependsOn(params object[] otherTasks)
+        public Task DependsOn(params object[] otherTasks)
         {
             foreach (var taskId in otherTasks.Select(ObjectIdGeneratorFacade.GetId))
             {
-                if (!_taskContainer.DoesContainTask(taskId))
-                    _taskContainer.RegisterEmptyDependicy(taskId);
+                if (!_taskContainer.DoesContainVertex(taskId))
+                    _taskContainer.RegisterEmptyDependency(taskId);
 
                 DependsOn(taskId);
             }
@@ -51,16 +47,16 @@ namespace SimpleTasks
             return this;
         }
 
-        public AbstractTask<TTask> DependsOn(params string[] otherTasks)
+        public Task DependsOn(params string[] otherTasks)
         {
             GuardOtherTasks(otherTasks);
 
             foreach (var otherTask in otherTasks)
             {
-                if (!_taskContainer.DoesContainTask(otherTask))
-                    _taskContainer.RegisterEmptyDependicy(otherTask);
+                if (!_taskContainer.DoesContainVertex(otherTask))
+                    _taskContainer.RegisterEmptyDependency(otherTask);
 
-                _taskContainer.RegisterDependicy(otherTask, Name);
+                _taskContainer.RegisterDependency(otherTask, Name);
             }
             return this;
         }
@@ -93,7 +89,7 @@ namespace SimpleTasks
             if (string.IsNullOrEmpty(otherTask))
                 throw new ArgumentNullOrEmptyException("otherTasks at index " + i);
 
-            if (_taskContainer.DoesDependicyExist(otherTask, Name))
+            if (_taskContainer.DoesDependencyExist(otherTask, Name))
                 throw new DependencyExistException();
         }
     }

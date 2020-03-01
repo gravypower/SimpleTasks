@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using FluentAssertions;
 using SimpleTasks.Exceptions;
+using SimpleTasks.Tasks;
 using Xunit;
 
 namespace SimpleTasks.Tests.TaskContainer
@@ -13,7 +14,7 @@ namespace SimpleTasks.Tests.TaskContainer
         
         public TaskContainerTests()
         {
-            Sut = new TaskContainerSpy(false);
+            Sut = new TaskContainerSpy();
         }
 
         [Fact]
@@ -321,7 +322,7 @@ namespace SimpleTasks.Tests.TaskContainer
         public void Given3CustomTasks_AddOrderDependicy_WhenRunCalledOrderIs123()
         {
             //Assign
-            Sut = new TaskContainerSpy(true);
+            Sut = new TaskContainerSpy();
 
             var callOrder = new List<string>();
 

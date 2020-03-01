@@ -9,8 +9,6 @@
       </e>
       <e p="packages" t="ExcludeRecursive" />
       <e p="SimpleTasks" t="IncludeRecursive">
-        <e p="AbstractTask.cs" t="Include" />
-        <e p="AbstractTaskContainer.cs" t="Include" />
         <e p="Annotations" t="Include">
           <e p="Annotations.cs" t="Include" />
         </e>
@@ -49,9 +47,22 @@
           </e>
         </e>
         <e p="ObjectIDGeneratorFacade.cs" t="Include" />
+        <e p="Pipelines" t="Include">
+          <e p="Attributes" t="Include">
+            <e p="DependsOnAttribute.cs" t="Include" />
+          </e>
+          <e p="Node.cs" t="Include" />
+          <e p="Pipeline.cs" t="Include" />
+        </e>
         <e p="SimpleTasks.csproj" t="IncludeRecursive" />
-        <e p="Task.cs" t="Include" />
-        <e p="TaskContainer.cs" t="Include" />
+        <e p="Tasks" t="Include">
+          <e p="Task.cs" t="Include" />
+          <e p="TaskContainer.cs" t="Include" />
+          <e p="TaskContainerConfiguration.cs" t="Include" />
+        </e>
+        <e p="Vertex.cs" t="Include" />
+        <e p="VertexContainer.cs" t="Include" />
+        <e p="VertexContainerConfiguration.cs" t="Include" />
       </e>
       <e p="SimpleTasks.Playground" t="IncludeRecursive">
         <e p="bin" t="ExcludeRecursive" />
@@ -63,13 +74,6 @@
           </e>
         </e>
         <e p="SimpleTasks.Playground.csproj" t="IncludeRecursive" />
-        <e p="SupportOfTaskTailures" t="Include">
-          <e p="Play.cs" t="Include" />
-          <e p="TaskRunnerNotHandlingExceptionsNatively" t="Include">
-            <e p="Task.cs" t="Include" />
-            <e p="TaskContainer.cs" t="Include" />
-          </e>
-        </e>
       </e>
       <e p="SimpleTasks.sln" t="IncludeFlat" />
       <e p="SimpleTasks.Tests" t="IncludeRecursive">
@@ -89,6 +93,18 @@
               <e p="SimpleTasks.Tests.AssemblyInfo.cs" t="Include" />
             </e>
           </e>
+        </e>
+        <e p="Pipelines" t="Include">
+          <e p="DummyCOntext.cs" t="Include" />
+          <e p="DummyInput.cs" t="Include" />
+          <e p="DummyNode.cs" t="Include" />
+          <e p="Nodes" t="Include">
+            <e p="DummeyNodeTwo.cs" t="Include" />
+            <e p="DummyNodeOne.cs" t="Include" />
+            <e p="DummyNodeThree.cs" t="Include" />
+          </e>
+          <e p="PipelineSpy.cs" t="Include" />
+          <e p="PipelineTests.cs" t="Include" />
         </e>
         <e p="SimpleTasks.Tests.csproj" t="IncludeRecursive" />
         <e p="Task" t="Include">

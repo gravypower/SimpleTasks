@@ -11,7 +11,7 @@ namespace SimpleTasks.Tests.TaskContainer
 
         public TaskContainerAPITests()
         {
-            Sut = new TaskContainerSpy(false);
+            Sut = new TaskContainerSpy();
         }
 
         [Fact]

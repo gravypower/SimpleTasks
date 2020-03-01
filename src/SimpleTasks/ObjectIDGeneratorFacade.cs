@@ -13,8 +13,7 @@ namespace SimpleTasks
 
         public static string GetId(object obj)
         {
-            bool firstTime;
-            return ObjectIdGen.GetId(obj, out firstTime) + "_ObjectIDGeneratorFacade";
+            return ObjectIdGen.GetId(obj, out _) + "_ObjectIDGeneratorFacade";
         }
     }
 }

@@ -10,7 +10,7 @@ namespace SimpleTasks.Tests.TaskContainer
         
         public ConditionalTaskTastsTests()
         {
-            Sut = new TaskContainerSpy(false);
+            Sut = new TaskContainerSpy();
         }
 
         [Fact]

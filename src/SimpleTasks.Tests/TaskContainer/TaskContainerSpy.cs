@@ -1,14 +1,15 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using SimpleTasks.Tasks;
 
 namespace SimpleTasks.Tests.TaskContainer
 {
-    public class TaskContainerSpy : global::SimpleTasks.TaskContainer
+    public class TaskContainerSpy : global::SimpleTasks.Tasks.TaskContainer
     {
-        public TaskContainerSpy(bool enforceDependencyOnAddOrder)
-            : base(enforceDependencyOnAddOrder)
+        public TaskContainerSpy()
+            : base(TaskContainerConfiguration.Default)
         {
         }
-        public List<SimpleTasks.Task> TasksSpy => Tasks.ToList();
+        public List<Tasks.Task> TasksSpy => Tasks.ToList();
     }
 }

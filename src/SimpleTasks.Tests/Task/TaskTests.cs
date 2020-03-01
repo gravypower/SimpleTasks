@@ -1,17 +1,18 @@
 ﻿using System;
 using FluentAssertions;
 using SimpleTasks.Exceptions;
+using SimpleTasks.Tasks;
 using Xunit;
 
 namespace SimpleTasks.Tests.Task
 {
     public class TaskTests
     {
-        public AbstractTask<SimpleTasks.Task> Sut;
+        public Tasks.Task Sut;
         
         public TaskTests()
         {
-            var taskContainer = new SimpleTasks.TaskContainer();
+            var taskContainer = new Tasks.TaskContainer(TaskContainerConfiguration.Default);
             Sut = taskContainer.Register("SomeTask",  () => GetType());
         }
 

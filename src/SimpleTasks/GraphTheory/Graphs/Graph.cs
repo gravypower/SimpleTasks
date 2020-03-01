@@ -6,7 +6,7 @@ namespace SimpleTasks.GraphTheory.Graphs
 {
     public abstract class Graph<TVertex> : IGraph<TVertex>
     {
-        public IDictionary<TVertex, IList<IEdge<TVertex>>> VerticesAndEdges { get; protected set; }
+        public IDictionary<TVertex, IList<IEdge<TVertex>>> VerticesAndEdges { get; }
 
         protected abstract void GuardEdge(TVertex source, TVertex target);
 
@@ -29,20 +29,17 @@ namespace SimpleTasks.GraphTheory.Graphs
             VerticesAndEdges[source].Add(new Edge<TVertex> { Source = source, Target = target });
         }
 
-        public IEnumerable<TVertex> Vertices
-        {
-            get { return VerticesAndEdges.Keys.ToList().AsReadOnly(); }
-        }
+        public IEnumerable<TVertex> Vertices => VerticesAndEdges.Keys.ToList().AsReadOnly();
 
         public IEnumerable<IEdge<TVertex>> Edges
         {
             get { return VerticesAndEdges.Values.SelectMany(value => value).ToList().AsReadOnly(); }
         }
 
-        protected static void GuardVertex(TVertex vertex)
+        private static void GuardVertex(TVertex vertex)
         {
-            if (vertex == null)
-                throw new ArgumentNullException();
+            if (vertex == null) 
+                throw new ArgumentNullException(nameof(vertex));
         }
     }
 }

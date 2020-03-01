@@ -41,7 +41,9 @@ namespace SimpleTasks.GraphTheory.Algorithms
             }
         }
 
-        private void AddSortedVertex(TVertex vertex, ICollection<TVertex> workingList,
+        private void AddSortedVertex(
+            TVertex vertex, 
+            ICollection<TVertex> workingList,
             IDictionary<TVertex, IList<IEdge<TVertex>>> verticesAndEdges)
         {
             _sortedVertices.Add(vertex);
