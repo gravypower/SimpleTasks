@@ -8,7 +8,7 @@ namespace SimpleTasks.Tasks
 {
     public class TaskContainer : VertexContainer<Task>
     {
-        private TaskContainerConfiguration   => ContainerConfiguration as TaskContainerConfiguration;
+        private TaskContainerConfiguration TaskContainerConfiguration => ContainerConfiguration as TaskContainerConfiguration;
 
         private readonly Stack<Task> _tasks = new Stack<Task>();
         
