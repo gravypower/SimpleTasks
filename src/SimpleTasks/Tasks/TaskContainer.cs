@@ -6,17 +6,16 @@ using SimpleTasks.Exceptions;
 
 namespace SimpleTasks.Tasks
 {
-    public class TaskContainer : VertexContainer
+    public class TaskContainer : VertexContainer<Task>
     {
-        private readonly TaskContainerConfiguration _containerConfiguration;
-        
+        private TaskContainerConfiguration   => ContainerConfiguration as TaskContainerConfiguration;
+
         private readonly Stack<Task> _tasks = new Stack<Task>();
         
         protected IEnumerable<Task> Tasks => _tasks.ToList().AsReadOnly();
         
-        public TaskContainer(TaskContainerConfiguration containerConfiguration)
+        public TaskContainer(TaskContainerConfiguration taskContainerConfiguration): base(taskContainerConfiguration)
         {
-            _containerConfiguration = containerConfiguration;
         }
 
         public Task Register(Action action)

@@ -4,9 +4,16 @@ using SimpleTasks.GraphTheory.Graphs;
 
 namespace SimpleTasks
 {
-    public abstract class VertexContainer
+    public abstract class VertexContainer<TVertex> 
+        where TVertex :Vertex
     {
+        protected readonly VertexContainerConfiguration ContainerConfiguration;
         protected readonly DirectedAcyclicGraph<string> Graph  = new DirectedAcyclicGraph<string>();
+        
+        protected VertexContainer(VertexContainerConfiguration containerConfiguration)
+        {
+            ContainerConfiguration = containerConfiguration;
+        }
         
         public void RegisterDependency(string source, string target)
         {
