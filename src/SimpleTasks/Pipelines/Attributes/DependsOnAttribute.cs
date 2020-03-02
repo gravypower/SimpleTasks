@@ -2,13 +2,14 @@
 
 namespace SimpleTasks.Pipelines.Attributes
 {
+    [AttributeUsage(AttributeTargets.Class)]
     public class DependsOnAttribute:Attribute 
     {
-        private readonly Type _type;
+        public Type Dependency { get; }
 
-        public DependsOnAttribute(Type type)
+        public DependsOnAttribute(Type dependency)
         {
-            _type = type;
+            Dependency = dependency;
         }
     }
 }

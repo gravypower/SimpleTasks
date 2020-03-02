@@ -6,10 +6,8 @@ using SimpleTasks.Exceptions;
 
 namespace SimpleTasks.Tasks
 {
-    public class TaskContainer : VertexContainer<Task>
+    public class TaskContainer : VertexContainer<Task, TaskContainer>
     {
-        private TaskContainerConfiguration TaskContainerConfiguration => ContainerConfiguration as TaskContainerConfiguration;
-
         private readonly Stack<Task> _tasks = new Stack<Task>();
         
         protected IEnumerable<Task> Tasks => _tasks.ToList().AsReadOnly();
@@ -33,23 +31,17 @@ namespace SimpleTasks.Tasks
             return BuildTask(taskName, action, condition);
         }
 
-        public void RegisterEmptyDependency(string taskName)
-        {
-            Graph.InsertVertex(taskName);
-        }
-
         private Task BuildTask(string name, Action action, Func<bool> condition)
         {
             Graph.InsertVertex(name);
             var task = new Task(this, name, action, condition);
 
-            var lastTask = default(Task);
-            if (_containerConfiguration.EnforceDependencyOnAddOrder && Tasks.Any())
-                lastTask = _tasks.Peek();
-
             _tasks.Push(task);
 
-            if (lastTask != null && _containerConfiguration.EnforceDependencyOnAddOrder)
+            if (!ContainerConfiguration.EnforceDependencyOnAddOrder || Tasks.Count() == 1) return task;
+            
+            var lastTask = _tasks.Peek();
+            if(lastTask != null)
                 task.DependsOn(lastTask.Name);
 
             return task;
@@ -70,7 +62,7 @@ namespace SimpleTasks.Tasks
             var task = _tasks.SingleOrDefault(t => t.Name == vertexName);
 
             if (task == null)
-                throw new DependicyDoesNotExistException();
+                throw new DependencyDoesNotExistException();
 
             if(task.Condition != null && !task.Condition())
                 return;

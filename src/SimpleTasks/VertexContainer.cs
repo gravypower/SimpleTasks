@@ -4,8 +4,9 @@ using SimpleTasks.GraphTheory.Graphs;
 
 namespace SimpleTasks
 {
-    public abstract class VertexContainer<TVertex> 
-        where TVertex :Vertex
+    public abstract class VertexContainer<TVertex, TVertexContainer> 
+        where TVertex : Vertex<TVertex, TVertexContainer>
+        where TVertexContainer : VertexContainer<TVertex, TVertexContainer>
     {
         protected readonly VertexContainerConfiguration ContainerConfiguration;
         protected readonly DirectedAcyclicGraph<string> Graph  = new DirectedAcyclicGraph<string>();
@@ -36,6 +37,11 @@ namespace SimpleTasks
             {
                 DoRun(sortedVertexName);
             }
+        }
+        
+        public void RegisterEmptyDependency(string taskName)
+        {
+            Graph.InsertVertex(taskName);
         }
 
         protected abstract void DoRun(string vertexName);

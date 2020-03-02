@@ -4,24 +4,24 @@ using System.Runtime.Serialization;
 namespace SimpleTasks.Exceptions
 {
     [Serializable]
-    public class DependicyDoesNotExistException : Exception
+    public class DependencyDoesNotExistException : Exception
     {
 
-        public DependicyDoesNotExistException()
+        public DependencyDoesNotExistException()
         {
         }
 
-        public DependicyDoesNotExistException(string message)
+        public DependencyDoesNotExistException(string message)
             : base(message)
         {
         }
 
-        public DependicyDoesNotExistException(string message, Exception inner)
+        public DependencyDoesNotExistException(string message, Exception inner)
             : base(message, inner)
         {
         }
 
-        protected DependicyDoesNotExistException(
+        protected DependencyDoesNotExistException(
             SerializationInfo info,
             StreamingContext context)
             : base(info, context)

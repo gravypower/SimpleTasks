@@ -15,8 +15,8 @@
         <e p="bin" t="ExcludeRecursive" />
         <e p="Exceptions" t="Include">
           <e p="ArgumentNullOrEmptyException.cs" t="Include" />
+          <e p="DependencyDoesNotExistException.cs" t="Include" />
           <e p="DependencyExistException.cs" t="Include" />
-          <e p="DependicyDoesNotExistException.cs" t="Include" />
           <e p="TaskExistsException.cs" t="Include" />
         </e>
         <e p="GraphTheory" t="Include">
@@ -53,6 +53,7 @@
           </e>
           <e p="Node.cs" t="Include" />
           <e p="Pipeline.cs" t="Include" />
+          <e p="PipelineContainerConfiguration.cs" t="Include" />
         </e>
         <e p="SimpleTasks.csproj" t="IncludeRecursive" />
         <e p="Tasks" t="Include">
@@ -99,9 +100,10 @@
           <e p="DummyInput.cs" t="Include" />
           <e p="DummyNode.cs" t="Include" />
           <e p="Nodes" t="Include">
-            <e p="DummeyNodeTwo.cs" t="Include" />
+            <e p="DummyNodeDependsOnThree.cs" t="Include" />
             <e p="DummyNodeOne.cs" t="Include" />
             <e p="DummyNodeThree.cs" t="Include" />
+            <e p="DummyNodeTwo.cs" t="Include" />
           </e>
           <e p="PipelineSpy.cs" t="Include" />
           <e p="PipelineTests.cs" t="Include" />

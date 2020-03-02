@@ -2,7 +2,8 @@
 
 namespace SimpleTasks.Tests.Pipelines.Nodes
 {
-    public class DummyNodeOne:DummyNode
+    [DependsOn(typeof(DummyNodeThree))]
+    public class DummyNodeDependsOnThree:DummyNode
     {
     }
 }

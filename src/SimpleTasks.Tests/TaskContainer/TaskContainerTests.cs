@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using FluentAssertions;
 using SimpleTasks.Exceptions;
-using SimpleTasks.Tasks;
 using Xunit;
 
 namespace SimpleTasks.Tests.TaskContainer
@@ -150,7 +149,7 @@ namespace SimpleTasks.Tests.TaskContainer
             Action act = () => Sut.Run();
 
             //Act Assert
-            act.Should().Throw<DependicyDoesNotExistException>();
+            act.Should().Throw<DependencyDoesNotExistException>();
         }
 
         [Fact]
@@ -252,7 +251,7 @@ namespace SimpleTasks.Tests.TaskContainer
         }
 
         [Fact]
-        public void GivenOneCustomTaskTheDependsOnATastThatDoesNotExist_WhereRunCalled_DependantTaskDoesNotExistExceptionThrown()
+        public void GivenOneCustomTaskTheDependsOnATaskThatDoesNotExist_WhereRunCalled_DependantTaskDoesNotExistExceptionThrown()
         {
             //Assign
             var customTask = new TaskSpy();
@@ -261,7 +260,7 @@ namespace SimpleTasks.Tests.TaskContainer
             Action act = () => Sut.Run();
 
             //Act Assert
-            act.Should().Throw<DependicyDoesNotExistException>();
+            act.Should().Throw<DependencyDoesNotExistException>();
         }
 
         [Fact]
@@ -275,7 +274,7 @@ namespace SimpleTasks.Tests.TaskContainer
             Action act = () => Sut.Run();
 
             //Act Assert
-            act.Should().Throw<DependicyDoesNotExistException>();
+            act.Should().Throw<DependencyDoesNotExistException>();
         }
 
         [Fact]
@@ -287,7 +286,8 @@ namespace SimpleTasks.Tests.TaskContainer
             var customTask = new TaskSpy(callOrder, "1");
             var customTask2 = new TaskSpy(callOrder, "2");
 
-            Sut.Register(customTask.Run).DependsOn(customTask2);
+            Sut.Register(customTask.Run)
+                .DependsOn(customTask2);
             Sut.Register(customTask2.Run);
 
             //Act
@@ -319,7 +319,7 @@ namespace SimpleTasks.Tests.TaskContainer
         }
 
         [Fact]
-        public void Given3CustomTasks_AddOrderDependicy_WhenRunCalledOrderIs123()
+        public void Given3CustomTasks_AddOrderDependency_WhenRunCalledOrderIs123()
         {
             //Assign
             Sut = new TaskContainerSpy();
@@ -356,7 +356,7 @@ namespace SimpleTasks.Tests.TaskContainer
         }
 
         [Fact]
-        public void GivenTwoTasksOneNamed1AndTwoAnObject_DependicyNamesDoNotCollide()
+        public void GivenTwoTasksOneNamed1AndTwoAnObject_DependencyNamesDoNotCollide()
         {
             //Assign
             var callOrder = new List<string>();
