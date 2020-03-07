@@ -372,8 +372,30 @@ namespace SimpleTasks.Tests.TaskContainer
             //Assert
             string.Join("", callOrder).Should().Be("21");
         }
+        
+        [Fact]
+        public void GivenOneTaskAndFiveActions_WhenActionsDependOnOtherActions_CallOrderIsCorrect()
+        {
+            //Assign
+            var callOrder = new List<string>();
+            
+            var customTask = Sut.Register("1", () => callOrder.Add("1"));
 
+            customTask
+                .DependsOn(() => callOrder.Add("2"),
+                    task2 => task2.DependsOn(() => callOrder.Add("3"),
+                            task3 => task3.DependsOn(() => callOrder.Add("4")))
+                        .DependsOn(() => callOrder.Add("5"))
+                )
+                .DependsOn(() => callOrder.Add("6"));
+            
+            //Act
+            Sut.Run();
 
+            //Assert
+            string.Join("", callOrder).Should().Be("456321");
+        }
+        
         public void DoNothing()
         {
         }

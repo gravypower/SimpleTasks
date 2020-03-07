@@ -1,15 +1,13 @@
-﻿using System.Collections.Generic;
-using FluentAssertions;
+﻿using FluentAssertions;
 using Xunit;
 
 namespace SimpleTasks.Tests.TaskContainer
 {
-    public class TaskContainerAPITests
+    public class TaskContainerApiTests
     {
         public TaskContainerSpy Sut { get; set; }
 
-
-        public TaskContainerAPITests()
+        public TaskContainerApiTests()
         {
             Sut = new TaskContainerSpy();
         }
@@ -48,23 +46,6 @@ namespace SimpleTasks.Tests.TaskContainer
 
             //Assert
             callOrder.Should().Be("231");
-        }
-
-        [Fact]
-        public void GivenTwoTasksOneNamed1AndTwoAnObject_CanDeclareTaskAsDependency()
-        {
-            //Assign
-            var callOrder = new List<string>();
-
-            var customTask = Sut.Register("1", () => callOrder.Add("1"));
-            var customTask2 = new TaskSpy(callOrder, "2");
-            customTask.DependsOn(customTask2, customTask2.Run);
-
-            //Act
-            Sut.Run();
-
-            //Assert
-            string.Join("", callOrder).Should().Be("21");
         }
     }
 }
